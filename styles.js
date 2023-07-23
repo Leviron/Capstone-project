@@ -10,4 +10,9 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
   }
+
+  card.styled.js {
+    display: flex;
+    
+  }
 `;

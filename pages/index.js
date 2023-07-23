@@ -1,11 +1,9 @@
-import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
+import Card from "../components/Card/Card";
 
 export default function Home() {
   return (
     <main>
-      <Heading>🏄‍♂️🏄‍♀️🏄 Capstone Template 🏄🏄‍♀️🏄‍♂️</Heading>
-      <SubHeading>Happy hacking!</SubHeading>
+      <Card />
     </main>
   );
 }
