@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const SearchContainer = styled.div`
+export const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2rem;
@@ -13,5 +13,3 @@ const SearchContainer = styled.div`
     text-align: center;
   }
 `;
-
-export { SearchContainer };
