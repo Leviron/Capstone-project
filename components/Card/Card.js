@@ -5,7 +5,6 @@ import "./Card";
 import Image from "next/image";
 import { ContainerStyle, ImageStyle } from "./Card.styled";
 
-export default function RecipesList() {
   return (
     <>
       {recipes.map((recipe) => (
