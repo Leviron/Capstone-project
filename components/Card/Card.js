@@ -10,8 +10,9 @@ const getFilteredRecipes = (recipes, searchTerm) => {
   if (!searchTerm) {
     return recipes;
   }
+  const searchTermLower = searchTerm.toLowerCase();
   return recipes.filter((recipe) => {
-    return recipe.title.includes(searchTerm);
+    return recipe.title.toLowerCase().includes(searchTermLower);
   });
 };
 
@@ -23,15 +24,17 @@ export default function SearchBar() {
     const searchWord = event?.target.value;
 
     if (searchWord.length > 2) {
-      setSearchWord(event?.target.value);
+      setSearchWord(searchWord.toLowerCase());
     } else {
       setSearchWord("");
     }
   };
+
   useEffect(() => {
     const filteredRecipes = getFilteredRecipes(recipes, searchWord);
     setRecipeList(filteredRecipes);
   }, [searchWord]);
+
   return (
     <>
       <SearchContainer>
