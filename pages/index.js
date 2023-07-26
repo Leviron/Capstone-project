@@ -1,9 +1,9 @@
-import Card from "../components/Card/Card";
+import SearchBar from "../components/Card/Card";
 
 export default function Home() {
   return (
     <main>
-      <Card />
+      <SearchBar />
     </main>
   );
 }
