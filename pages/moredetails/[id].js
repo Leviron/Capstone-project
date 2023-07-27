@@ -1,7 +1,15 @@
 import { useRouter } from "next/router";
 import { recipes } from "../../components/lib/recipes";
-import { MoreDetailsLayout } from "../../components/moredetails_styled/styled_details";
+import {
+  MoreDetailsLayout,
+  Header,
+  ImageStyle,
+  Ingredients,
+  Instructions,
+  GoBackButton,
+} from "../../components/moredetails_styled/styled_details";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function MoreDetails() {
   const router = useRouter();
@@ -15,17 +23,38 @@ export default function MoreDetails() {
   }
 
   return (
-    <MoreDetailsLayout>
-      <h1>{recipeDetails.title}</h1>
-      <h2>{recipeDetails.subtitle}</h2>
-      <Image
-        src={`/images/${recipeDetails.picture}`}
-        width={120}
-        height={120}
-        alt={recipeDetails.title}
-      />
-      <p>{recipeDetails.description}</p>
-      <p>{recipeDetails.ingredients}</p>
-    </MoreDetailsLayout>
+    <>
+      <Header>
+        {recipeDetails.title}
+        <Link href="/">
+          <GoBackButton>back to main</GoBackButton>
+        </Link>
+      </Header>
+      <MoreDetailsLayout>
+        <ImageStyle>
+          <Image
+            src={`/images/${recipeDetails.picture}`}
+            width={100}
+            height={100}
+            alt={recipeDetails.title}
+          />
+          <dfn>
+            "{recipeDetails.title} {recipeDetails.subtitle}"
+          </dfn>
+        </ImageStyle>
+        <Ingredients>
+          <ul>
+            <h3>Ingredients</h3>
+            {recipeDetails.ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+            <article>
+              <h3>instructions</h3>
+              <p>{recipeDetails.instructions}</p>
+            </article>
+          </ul>
+        </Ingredients>
+      </MoreDetailsLayout>
+    </>
   );
 }
