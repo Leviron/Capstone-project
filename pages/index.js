@@ -1,9 +1,11 @@
-import Card from "../components/Card/Card";
+import SearchBar from "../components/Card/Card";
+import Heading from "../components/Heading";
 
 export default function Home() {
   return (
     <main>
-      <Card />
+      <Heading>My Recipe App</Heading>
+      <SearchBar />
     </main>
   );
 }
