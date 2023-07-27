@@ -18,6 +18,12 @@ export default function MoreDetails() {
     <MoreDetailsLayout>
       <h1>{recipeDetails.title}</h1>
       <h2>{recipeDetails.subtitle}</h2>
+      <Image
+        src={`/images/${recipeDetails.picture}`}
+        width={120}
+        height={120}
+        alt={recipeDetails.title}
+      />
       <p>{recipeDetails.description}</p>
       <p>{recipeDetails.ingredients}</p>
     </MoreDetailsLayout>
