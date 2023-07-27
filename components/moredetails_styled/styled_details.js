@@ -15,7 +15,7 @@ export const Header = styled.h1`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  font-size: 2rem;
+  font-size: 3rem;
   text-align: center;
   margin: 3rem;
 `;
