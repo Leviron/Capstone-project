@@ -5,7 +5,6 @@ import {
   Header,
   ImageStyle,
   Ingredients,
-  Instructions,
   GoBackButton,
 } from "../../components/moredetails_styled/styled_details";
 import Image from "next/image";
@@ -39,7 +38,7 @@ export default function MoreDetails() {
             alt={recipeDetails.title}
           />
           <dfn>
-            "{recipeDetails.title} {recipeDetails.subtitle}"
+            {recipeDetails.title} {recipeDetails.subtitle}
           </dfn>
         </ImageStyle>
         <Ingredients>
