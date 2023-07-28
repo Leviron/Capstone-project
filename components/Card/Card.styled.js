@@ -5,14 +5,9 @@ export const ContainerStyle = styled.div`
   padding: 1rem;
   margin: 2rem;
   display: flex;
+  justify-content: space-around;
   align-items: center;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-
-  .ContainerStyle--text {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15rem;
-  }
 
   img {
     margin-left: 5rem;
@@ -29,6 +24,36 @@ export const ContainerStyle = styled.div`
   h2 {
     font-size: 1rem;
     margin-top: 0.1rem;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+`;
+
+export const MoreDetailButton = styled.button`
+  width: 10rem;
+  height: 2rem;
+  border-radius: 20px;
+  border: 1px solid black;
+  border-color: grey;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  justify-content: flex-end;
+
+  &:hover {
+    background-color: black;
+    color: white;
   }
 `;
 
