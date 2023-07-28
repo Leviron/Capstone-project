@@ -50,6 +50,7 @@ export const MoreDetailButton = styled.button`
   font-weight: bold;
   text-align: center;
   justify-content: flex-end;
+  cursor: pointer;
 
   &:hover {
     background-color: black;
