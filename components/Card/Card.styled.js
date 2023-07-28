@@ -4,14 +4,13 @@ export const ContainerStyle = styled.div`
   border-radius: 1rem;
   padding: 1rem;
   margin: 2rem;
-  margin-left: 15rem;
-  margin-right: 15rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 
   img {
+    margin-left: 5rem;
     border-radius: 100%;
     object-fit: cover;
   }
@@ -20,7 +19,7 @@ export const ContainerStyle = styled.div`
     font-size: 2rem;
     margin-bottom: 0.1rem;
     align-items: center;
-    text-align: center;
+
   }
 
   h2 {
@@ -80,5 +79,25 @@ export const MoreDetailButton = styled.button`
   &:hover {
     background-color: black;
     color: white;
+  }
+`;
+
+export const ContentStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rem;
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  input {
+    width: 33%;
+    height: 2rem;
+    border-radius: 20px;
+    text-align: center;
   }
 `;
