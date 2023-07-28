@@ -1,5 +1,6 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
+import NavigationBar from "../components/Navbar";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -9,6 +10,7 @@ export default function App({ Component, pageProps }) {
         <title>Recipe App</title>
       </Head>
       <Component {...pageProps} />
+      <NavigationBar />
     </>
   );
 }
