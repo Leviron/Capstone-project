@@ -19,37 +19,12 @@ export const ContainerStyle = styled.div`
     font-size: 2rem;
     margin-bottom: 0.1rem;
     align-items: center;
-
   }
 
   h2 {
     font-size: 1rem;
     margin-top: 0.1rem;
     align-items: center;
-    text-align: center;
-  }
-`;
-
-export const ContentStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const SearchContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 3em;
-  margin-bottom: 3rem;
-  margin-left: 30rem;
-  margin-right: 30rem;
-  align-items: center;
-
-  input {
-    width: 80%;
-    height: 2rem;
-    border-radius: 20px;
-    border: 1px solid black;
-    border-color: grey;
     text-align: center;
   }
 `;
