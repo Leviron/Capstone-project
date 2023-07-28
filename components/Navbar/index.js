@@ -13,19 +13,16 @@ export default function NavigationBar() {
       <Link href="/">
         <NavButton>
           <HomeIcon />
-          <a>Home</a>
         </NavButton>
       </Link>
       <Link href="/create">
-        <NavButton href="/">
+        <NavButton>
           <AddRecipesIcon />
-          <a>Create</a>
         </NavButton>
       </Link>
       <Link href="/">
-        <NavButton href="/">
+        <NavButton>
           <MyRecipesIcon />
-          <a>Recipes</a>
         </NavButton>
       </Link>
     </NavContainer>
