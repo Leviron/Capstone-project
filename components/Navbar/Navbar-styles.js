@@ -10,10 +10,10 @@ export const NavContainer = styled.nav`
   right: 0;
   background-color: #fff;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  padding: 25px;
-  width: 100%;
+  padding: 10px;
+  width: 50% 50%;
   border-top: 1px solid #eaeaea;
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
 `;
@@ -32,6 +32,10 @@ export const NavButton = styled.button`
   margin-left: 30px;
   margin-right: 30px;
   width: 90%;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
 `;
 
 export const MyRecipesIcon = styled(GiCook)`

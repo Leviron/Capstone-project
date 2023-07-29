@@ -15,6 +15,7 @@ export const StyledCard = styled.div`
   user-select: none;
   font-weight: bolder;
   color: black;
+  margin-top: 3rem;
 
   display: flex;
   flex-direction: column;
@@ -28,6 +29,19 @@ export const StyledCard = styled.div`
 
   :active {
     transform: scale(0.95) rotateZ(1.7deg);
+  }
+
+  img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 17px 17px 0 0;
+  }
+
+  p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
   }
 `;
 
@@ -60,18 +74,20 @@ export const SearchContainer = styled.div`
   margin-top: 2rem;
   margin-bottom: 2rem;
   grid-column: 1 / 5;
-  padding: 1rem;
   display: flex;
   border-radius: 20px;
-  
-  input {
-    width: 40rem;
-    height: 3rem;
-    text-align: center;
-    border-color: white;
-    
+  border-radius: 10px;
+  border: 1px solid black;
+  svg {
+    margin-left: 1rem;
+    align-self: center;
   }
 
+  input {
+    width: 20rem;
+    height: 3rem;
+    text-align: center;
+    border: none;
   }
 `;
 
@@ -80,7 +96,7 @@ export const SearchIcon = styled(BsSearch)``;
 export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
+
   margin: 1rem;
   margin-top: 2rem;
 
