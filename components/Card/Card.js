@@ -2,18 +2,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { useEffect } from "react";
 import { recipes } from "../lib/recipes";
-
-import { ContainerStyle } from "./Card.styled";
-import { ContentStyle } from "./Card.styled";
-import Link from "next/link";
 import {
-  ButtonContainer,
-  MoreDetailButton,
+  Wrapper,
+  ContainerStyle,
+  StyledCard,
   SearchContainer,
+  MoreDetailButton,
+  SearchIcon,
 } from "./Card.styled";
-
-
-
+import Link from "next/link";
 
 const getFilteredRecipes = (recipes, searchTerm) => {
   if (!searchTerm) {
@@ -44,40 +41,35 @@ export default function SearchBar() {
     setRecipeList(filteredRecipes);
   }, [searchWord]);
 
+  const maxRecipesToShow = 3;
+
   return (
-    <>
+    <Wrapper>
       <SearchContainer>
+        <SearchIcon />
         <input
           type="search"
           placeholder="Type to search.."
           onChange={(event) => searchHandler(event)}
         />
       </SearchContainer>
-      {recipeList.map((recipe) => {
-        return (
-          <ContainerStyle key={recipe.id}>
+
+      {recipeList.slice(0, maxRecipesToShow).map((recipe) => (
+        <ContainerStyle key={recipe.id}>
+          <StyledCard>
             <Image
               src={`/images/${recipe.picture}`}
-
               width={120}
               height={120}
-
               alt={recipe.title}
             />
-            <ContentStyle>
-              <h1>{recipe.title}</h1>
-              <h2>{recipe.subtitle}</h2>
-            </ContentStyle>
-
-            <ButtonContainer>
-              <Link href={`/moredetails/${recipe.id}`}>
-                <MoreDetailButton>More Details</MoreDetailButton>
-              </Link>
-            </ButtonContainer>
-
-          </ContainerStyle>
-        );
-      })}
-    </>
+            <p>{recipe.title}</p>
+            <Link href={`/moredetails/${recipe.id}`}>
+              <MoreDetailButton>More Details</MoreDetailButton>
+            </Link>
+          </StyledCard>
+        </ContainerStyle>
+      ))}
+    </Wrapper>
   );
 }

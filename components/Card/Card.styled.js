@@ -1,39 +1,38 @@
 import styled from "styled-components";
+import { BsSearch } from "react-icons/bs";
 
-export const ContainerStyle = styled.div`
-  border-radius: 1rem;
-  padding: 1rem;
-  margin: 2rem;
+export const StyledCard = styled.div`
+  box-sizing: border-box;
+  width: 300px;
+  height: 254px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  transition: all 0.5s;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 
-  img {
-    margin-left: 5rem;
-    border-radius: 100%;
-    object-fit: cover;
+  :hover {
+    transform: scale(1.05);
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
   }
 
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 0.1rem;
-    align-items: center;
-  }
-
-  h2 {
-    font-size: 1rem;
-    margin-top: 0.1rem;
-    align-items: center;
-    text-align: center;
+  :active {
+    transform: scale(0.95) rotateZ(1.7deg);
   }
 `;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+export const ContainerStyle = styled.div`
+  margin: 1rem;
 `;
 
 export const MoreDetailButton = styled.button`
@@ -55,25 +54,42 @@ export const MoreDetailButton = styled.button`
   &:hover {
     background-color: black;
     color: white;
-  }
-`;
-
-export const ContentStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 15rem;
 `;
 
 export const SearchContainer = styled.div`
-  display: flex;
-  justify-content: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
-
+  grid-column: 1 / 5;
+  padding: 1rem;
+  display: flex;
+  border-radius: 20px;
+  
   input {
-    width: 33%;
-    height: 2rem;
-    border-radius: 20px;
+    width: 40rem;
+    height: 3rem;
     text-align: center;
+    border-color: white;
+    
   }
+
+  }
+`;
+
+export const SearchIcon = styled(BsSearch)``;
+
+export const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  margin: 1rem;
+  margin-top: 2rem;
+
+  justify-content: space-evenly;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  background-color: white;
 `;

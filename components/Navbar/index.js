@@ -20,7 +20,7 @@ export default function NavigationBar() {
           <AddRecipesIcon />
         </NavButton>
       </Link>
-      <Link href="/">
+      <Link href="/myrecipes">
         <NavButton>
           <MyRecipesIcon />
         </NavButton>
