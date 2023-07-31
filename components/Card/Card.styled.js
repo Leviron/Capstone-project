@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs";
 export const StyledCard = styled.div`
   box-sizing: border-box;
   width: 300px;
-  height: 254px;
+  height: 50vh;
   background: rgba(217, 217, 217, 0.58);
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -76,22 +76,28 @@ export const SearchContainer = styled.div`
   grid-column: 1 / 5;
   display: flex;
   border-radius: 20px;
-  border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid lightgrey;
+  background-color: lightgrey;
   svg {
     margin-left: 1rem;
     align-self: center;
+    justify-self: center;
   }
 
   input {
     width: 20rem;
     height: 3rem;
     text-align: center;
+    border-radius: 20px;
     border: none;
   }
 `;
 
-export const SearchIcon = styled(BsSearch)``;
+export const SearchIcon = styled(BsSearch)`
+  font-size: 1rem;
+  color: grey;
+  margin-right: 1rem;
+`;
 
 export const Wrapper = styled.div`
   display: grid;
