@@ -18,8 +18,7 @@ const Heading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 30%;
-  margin-right: 30%;
+
   margin-top: 2%;
   border-radius: 50%;
   text-underline-offset: 10px;
