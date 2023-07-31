@@ -1,4 +1,4 @@
-import SearchBar from "../components/Card/Card";
+import MainPage from "../components/Main/Card";
 import Heading from "../components/Heading";
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
         <Heading>
           <h1>My Recipe App</h1>
         </Heading>
-        <SearchBar />
+        <MainPage />
       </main>
     </>
   );

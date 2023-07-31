@@ -11,18 +11,9 @@ import {
   SearchIcon,
 } from "./Card.styled";
 import Link from "next/link";
+import { getFilteredRecipes } from "../Search/search";
 
-const getFilteredRecipes = (recipes, searchTerm) => {
-  if (!searchTerm) {
-    return recipes;
-  }
-  const searchTermLower = searchTerm.toLowerCase();
-  return recipes.filter((recipe) => {
-    return recipe.title.toLowerCase().includes(searchTermLower);
-  });
-};
-
-export default function SearchBar() {
+export default function MainPage() {
   const [recipeList, setRecipeList] = useState(recipes);
   const [searchWord, setSearchWord] = useState("");
 

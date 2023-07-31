@@ -10,7 +10,7 @@ const recipesSchema = new Schema({
   originalURL: { type: String },
 });
 
-const recipes =
+const Recipes =
   mongoose.models.recipesDB || mongoose.model("Recipe", recipesSchema);
 
-export default recipes;
+export default Recipes;

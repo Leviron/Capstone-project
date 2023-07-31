@@ -14,13 +14,15 @@
     "@react-icons/all-files": "^4.1.0",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
+    "mongodb": "^5.7.0",
     "mongoose": "^7.4.1",
     "next": "13.2.3",
     "next-fonts": "^1.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
-    "styled-components": "^5.3.11"
+    "styled-components": "^5.3.11",
+    "swr": "^2.2.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",

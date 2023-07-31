@@ -34,12 +34,12 @@ export const FormContainer = styled.form`
     border-radius: 5px;
     font-size: 1rem;
   }
+`;
 
-  button {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
+export const FormButton = styled.button`
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
 `;
