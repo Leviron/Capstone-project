@@ -7,9 +7,9 @@ export default function Header() {
   return (
     <Heading>
       <KnifeIcon />
-      <PotIcon />
-      <h1>My Recipe</h1>
       <SpoonIcon />
+      <h1>My Recipe</h1>
+      <PotIcon />
     </Heading>
   );
 }
@@ -37,11 +37,11 @@ const Heading = styled.div`
 
 const SpoonIcon = styled(LiaUtensilSpoonSolid)`
   font-size: 2rem;
-  color: #d69a75;
+  color: #d46ad5;
 `;
 const PotIcon = styled(PiCookingPotBold)`
   font-size: 2rem;
-  color: #d46ad5;
+  color: #d69a75;
 `;
 const KnifeIcon = styled(ImSpoonKnife)`
   font-size: 2rem;

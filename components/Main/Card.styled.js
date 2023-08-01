@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs";
 export const StyledCard = styled.div`
   box-sizing: border-box;
   width: 300px;
-  height: 50vh;
+  height: 40vh;
   background: rgba(217, 217, 217, 0.58);
   border: 1px solid white;
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
@@ -19,7 +19,7 @@ export const StyledCard = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
 
   :hover {
@@ -29,13 +29,6 @@ export const StyledCard = styled.div`
 
   :active {
     transform: scale(0.95) rotateZ(1.7deg);
-  }
-
-  img {
-    width: 100%;
-    height: 30%;
-    object-fit: cover;
-    border-radius: 17px 17px 0 0;
   }
 
   p {

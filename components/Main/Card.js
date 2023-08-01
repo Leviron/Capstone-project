@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Image from "next/image";
-import { useEffect } from "react";
 import {
   Wrapper,
   ContainerStyle,
