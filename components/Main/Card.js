@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useEffect } from "react";
-import { recipes } from "../lib/recipes";
 import {
   Wrapper,
   ContainerStyle,
@@ -12,10 +11,22 @@ import {
 } from "./Card.styled";
 import Link from "next/link";
 import { getFilteredRecipes } from "../Search/search";
+import useSWR from "swr";
 
 export default function MainPage() {
-  const [recipeList, setRecipeList] = useState(recipes);
+  const { data, isLoading } = useSWR("/api/recipes", {
+    initialData: [],
+    revalidateOnMount: true,
+  });
+
   const [searchWord, setSearchWord] = useState("");
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  if (!data) {
+    return;
+  }
 
   const searchHandler = (event) => {
     const searchWord = event?.target.value;
@@ -26,13 +37,6 @@ export default function MainPage() {
       setSearchWord("");
     }
   };
-
-  useEffect(() => {
-    const filteredRecipes = getFilteredRecipes(recipes, searchWord);
-    setRecipeList(filteredRecipes);
-  }, [searchWord]);
-
-  const maxRecipesToShow = 3;
 
   return (
     <Wrapper>
@@ -45,17 +49,17 @@ export default function MainPage() {
         />
       </SearchContainer>
 
-      {recipeList.slice(0, maxRecipesToShow).map((recipe) => (
-        <ContainerStyle key={recipe.id}>
+      {getFilteredRecipes(data, searchWord).map((recipe) => (
+        <ContainerStyle key={recipe._id}>
           <StyledCard>
-            <Image
-              src={`/images/${recipe.picture}`}
+            {/* <Image
+              src={recipe.imageURL}
               width={120}
               height={120}
-              alt={recipe.title}
-            />
-            <p>{recipe.title}</p>
-            <Link href={`/moredetails/${recipe.id}`}>
+              alt={recipe.name}
+            /> */}
+            <p>{recipe.name}</p>
+            <Link href={`/moredetails/${recipe._id}`}>
               <MoreDetailButton>More Details</MoreDetailButton>
             </Link>
           </StyledCard>

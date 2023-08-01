@@ -4,6 +4,6 @@ export const getFilteredRecipes = (recipes, searchTerm) => {
   }
   const searchTermLower = searchTerm.toLowerCase();
   return recipes.filter((recipe) => {
-    return recipe.title.toLowerCase().includes(searchTermLower);
+    return recipe.name.toLowerCase().includes(searchTermLower);
   });
 };
