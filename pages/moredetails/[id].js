@@ -13,7 +13,7 @@ export default function MoreDetails() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: recipe, error } = useSWR(`/api/recipes/${id}`, {
+  const { recipe, error } = useSWR(`/api/recipes/${id}`, {
     revalidateOnMount: true,
   });
 
