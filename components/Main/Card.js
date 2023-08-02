@@ -23,7 +23,7 @@ export default function MainPage() {
     return <h1>Loading...</h1>;
   }
   if (!data) {
-    return;
+    return null;
   }
 
   const searchHandler = (event) => {
@@ -37,7 +37,6 @@ export default function MainPage() {
   };
 
   const filteredRecipes = getFilteredRecipes(data, searchWord);
-  const recipesToDisplay = filteredRecipes.slice(0, 4);
 
   return (
     <Wrapper>
@@ -50,7 +49,7 @@ export default function MainPage() {
         />
       </SearchContainer>
 
-      {recipesToDisplay.map((recipe) => (
+      {filteredRecipes.map((recipe) => (
         <ContainerStyle key={recipe._id}>
           <StyledCard>
             <p>{recipe.name}</p>
