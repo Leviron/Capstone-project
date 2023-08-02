@@ -4,7 +4,6 @@ import {
   Ingredients,
   GoBackButton,
 } from "../../components/moredetails_styled/styled_details";
-
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Link from "next/link";
@@ -13,7 +12,7 @@ export default function MoreDetails() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { recipe, error } = useSWR(`/api/recipes/${id}`, {
+  const { data: recipe, error } = useSWR(`/api/recipes/${id}`, {
     revalidateOnMount: true,
   });
 
@@ -32,7 +31,7 @@ export default function MoreDetails() {
           <GoBackButton>back to main</GoBackButton>
         </Link>
       </Header>
-      <MoreDetailsLayout key={recipe._id}>
+      <MoreDetailsLayout>
         <Ingredients>
           <ul>
             <h3>Ingredients</h3>
@@ -42,7 +41,7 @@ export default function MoreDetails() {
               </li>
             ))}
             <article>
-              <h3>instructions</h3>
+              <h3>Instructions</h3>
               <p>{recipe.instructions}</p>
             </article>
           </ul>

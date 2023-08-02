@@ -94,7 +94,6 @@ export const SearchIcon = styled(BsSearch)`
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
 
   margin: 1rem;
   margin-top: 2rem;
