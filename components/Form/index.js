@@ -10,7 +10,7 @@ export default function CreateRecipe() {
   const [ingredientType1, setIngredientType1] = useState("");
   const [steps, setSteps] = useState("");
   const [timers, setTimers] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
   const router = useRouter();
 
