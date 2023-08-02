@@ -1,58 +1,70 @@
-import { useRouter } from "next/router";
-import { recipes } from "../../components/lib/recipes";
 import {
   MoreDetailsLayout,
   Header,
-  ImageStyle,
   Ingredients,
   GoBackButton,
 } from "../../components/moredetails_styled/styled_details";
-import Image from "next/image";
+import { useRouter } from "next/router";
+import useSWR from "swr";
 import Link from "next/link";
 
 export default function MoreDetails() {
   const router = useRouter();
   const { id } = router.query;
-  const numericId = parseInt(id, 10);
 
-  const recipeDetails = recipes.find((recipe) => recipe.id === numericId);
+  const { data: recipe, error } = useSWR(`/api/recipes/${id}`, {
+    revalidateOnMount: true,
+  });
 
-  if (!recipeDetails) {
-    return <h1>Recipe not found</h1>;
+  if (error) {
+    return <h1>Something went wrong!</h1>;
+  }
+
+  if (!recipe) {
+    return <h1>Loading...</h1>;
   }
 
   return (
     <>
       <Header>
-        {recipeDetails.title}
         <Link href="/">
           <GoBackButton>back to main</GoBackButton>
         </Link>
       </Header>
       <MoreDetailsLayout>
-        <ImageStyle>
-          <Image
-            src={`/images/${recipeDetails.picture}`}
-            width={100}
-            height={100}
-            alt={recipeDetails.title}
-          />
-          <dfn>
-            {recipeDetails.title} {recipeDetails.subtitle}
-          </dfn>
-        </ImageStyle>
-        <Ingredients>
-          <ul>
-            <h3>Ingredients</h3>
-            {recipeDetails.ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient}</li>
-            ))}
-            <article>
-              <h3>instructions</h3>
-              <p>{recipeDetails.instructions}</p>
-            </article>
-          </ul>
-        </Ingredients>
+        <h2>{recipe.name}</h2>
+        {recipe.ingredients && (
+          <Ingredients>
+            <ul>
+              <h3>Ingredients</h3>
+              {recipe.ingredients.map((ingredient, index) => (
+                <li key={index}>
+                  {ingredient.quantity} {ingredient.name} - {ingredient.type}
+                </li>
+              ))}
+            </ul>
+          </Ingredients>
+        )}
+        {recipe.instructions && (
+          <article>
+            <h3>Instructions</h3>
+            <ol>
+              {recipe.instructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ol>
+          </article>
+        )}
+        {recipe.steps && (
+          <article>
+            <h3>Steps</h3>
+            <ol>
+              {recipe.steps.map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ol>
+          </article>
+        )}
       </MoreDetailsLayout>
     </>
   );
