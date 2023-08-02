@@ -10,15 +10,23 @@ export default function CreateRecipe() {
     const formData = new FormData(event.target);
     const recipe = Object.fromEntries(formData);
 
-    const response = await fetch(`/api/recipes`, {
-      method: "POST",
-      body: JSON.stringify(recipe),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    event.target.reset();
-    router.push("/");
+    try {
+      const response = await fetch(`/api/recipes`, {
+        method: "POST",
+        body: JSON.stringify(recipe),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        window.alert("Problem creating the recipe!");
+        return;
+      }
+      event.target.reset();
+      router.push("/");
+    } catch (error) {
+      window.alert("Problem creating the recipe!");
+    }
   };
 
   return (
@@ -42,7 +50,7 @@ export default function CreateRecipe() {
           placeholder="Timers (separate by commas)"
         />
 
-        <FormButton type="submit">Submit </FormButton>
+        <FormButton>Submit </FormButton>
       </FormContainer>{" "}
     </>
   );

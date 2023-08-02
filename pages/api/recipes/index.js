@@ -5,13 +5,12 @@ export default async function handler(request, response) {
   await dbConnect();
   if (request.method === "GET") {
     const recipes = await Recipe.find();
-    response.status(200).json(recipes);
+    response.status(201).json(recipes);
     return;
   }
   if (request.method === "POST") {
     try {
-      const recipe = request.body;
-      const newRecipe = new Recipe(recipe);
+      const newRecipe = new Recipe(request.body);
       await newRecipe.save();
       response.status(200).json({ success: true, data: newRecipe });
       return;

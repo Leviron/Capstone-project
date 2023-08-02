@@ -46,19 +46,13 @@ export default function MainPage() {
         <input
           type="search"
           placeholder="Type to search.."
-          onChange={(event) => searchHandler(event)}
+          onChange={searchHandler}
         />
       </SearchContainer>
 
       {recipesToDisplay.map((recipe) => (
         <ContainerStyle key={recipe._id}>
           <StyledCard>
-            {/* <Image
-              src={recipe.imageURL}
-              width={120}
-              height={120}
-              alt={recipe.name}
-            /> */}
             <p>{recipe.name}</p>
             <Link href={`/moredetails/${recipe._id}`}>
               <MoreDetailButton>More Details</MoreDetailButton>
