@@ -6,20 +6,20 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     const recipes = await Recipe.find();
     response.status(200).json(recipes);
-  } else if (request.method === "POST") {
-    const {} = request.body;
-
-    const newRecipe = new Recipe({
-      recipesTitle,
-      ingredientName1,
-      ingredientQuantity1,
-      ingredientType1,
-      steps,
-      timers,
-    });
-    await newRecipe.save();
-
-    response.status(201).json({ success: true, data: newRecipe });
+    return;
+  }
+  if (request.method === "POST") {
+    try {
+      const recipe = request.body;
+      const newRecipe = new Recipe(recipe);
+      await newRecipe.save();
+      response.status(200).json({ success: true, data: newRecipe });
+      return;
+    } catch (error) {
+      console.error("Error saving recipe:", error);
+      response.status(500).json({ message: "Internal server error" });
+      return;
+    }
   } else {
     response.status(400).json({ success: false });
   }
