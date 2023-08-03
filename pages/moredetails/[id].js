@@ -32,7 +32,7 @@ export default function MoreDetails() {
         </Link>
       </Header>
       <MoreDetailsLayout>
-        <h2>{recipe.name}</h2>
+        <h1>{recipe.name}</h1>
         {recipe.ingredients && (
           <Ingredients>
             <ul>

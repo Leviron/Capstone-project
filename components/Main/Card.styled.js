@@ -107,3 +107,25 @@ export const Wrapper = styled.div`
   color: black;
   background-color: white;
 `;
+
+export const EditButton = styled.button`
+  width: 10rem;
+  height: 2rem;
+  border-radius: 20px;
+  border: 1px solid black;
+  border-color: grey;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  justify-content: flex-end;
+  cursor: pointer;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;

@@ -1,23 +1,35 @@
 import styled from "styled-components";
 
 export const MoreDetailsLayout = styled.div`
-  border-radius: 1rem;
-  padding: 1rem;
-  margin: 2rem;
-  margin-left: 15rem;
-  margin-right: 15rem;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-`;
-
-export const Header = styled.h1`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  font-size: 3rem;
-  text-align: center;
-  margin: 3rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  border: 1px solid black;
+  border-radius: 20px;
+  border-color: grey;
+
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
 `;
 
 export const GoBackButton = styled.button`
@@ -40,54 +52,26 @@ export const GoBackButton = styled.button`
   }
 `;
 
-export const ImageStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 1rem;
-  padding: 2rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-
-  img {
-    width: 200px;
-    height: 180px;
-    object-fit: cover;
-  }
-
-  dfn {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    text-align: center;
-  }
-`;
+export const ImageStyle = styled.div``;
 
 export const Ingredients = styled.ul`
-  border-radius: 1rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  margin-left: 2rem;
-  margin-right: 2rem;
-
   h3 {
     font-size: 1.5rem;
     font-weight: bold;
-    text-align: flex-start;
+    text-align: center;
+  }
+
+  ul {
+    width: 100%;
+    font-size: 1.5rem;
+
+    text-align: center;
+    text-decoration: none;
   }
 
   li {
-    display: flex;
-    font-weight: bold;
-    font-size: 0.8rem;
-  }
-
-  p {
-    font-size: 1rem;
-    font-weight: bold;
+    list-style: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 `;

@@ -6,6 +6,7 @@ import {
   SearchContainer,
   MoreDetailButton,
   SearchIcon,
+  EditButton,
 } from "./Card.styled";
 import Link from "next/link";
 import { getFilteredRecipes } from "../Search/search";
@@ -55,6 +56,9 @@ export default function MainPage() {
             <p>{recipe.name}</p>
             <Link href={`/moredetails/${recipe._id}`}>
               <MoreDetailButton>More Details</MoreDetailButton>
+            </Link>
+            <Link href={`/editpage/${recipe._id}`}>
+              <MoreDetailButton>Edit recipe</MoreDetailButton>
             </Link>
           </StyledCard>
         </ContainerStyle>
