@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 
 export const StyledCard = styled.div`
   box-sizing: border-box;
@@ -128,4 +129,11 @@ export const EditButton = styled.button`
     background-color: black;
     color: white;
   }
+`;
+
+export const DeleteIcon = styled(MdDelete)`
+  font-size: 1rem;
+  color: grey;
+  margin-right: 1rem;
+  cursor: pointer;
 `;
