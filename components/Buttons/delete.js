@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { DeleteIcon } from "../Main/Card.styled";
 
-export default function DeleteRecipe() {
+export default function DeleteButton() {
   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();

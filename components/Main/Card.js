@@ -12,20 +12,33 @@ import {
 import Link from "next/link";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 
-export default function MainPage() {
-  const { data, isLoading } = useSWR("/api/recipes", {
-    initialData: [],
-    revalidateOnMount: true,
-  });
-
+export default function MainPage({ recipes }) {
+  const { data, isLoading, error } = useSWR("/api/recipes");
+  const router = useRouter();
   const [searchWord, setSearchWord] = useState("");
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-  if (!data) {
-    return null;
+  const handleDelete = async (recipe) => {
+    const response = await fetch(`/api/recipes/${recipe._id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      router.push("/");
+    } else {
+      const responseData = await response.json();
+      console.error(responseData.message);
+    }
+  };
+
+  if (error) {
+    return (
+      <h1>
+        {error.message === "Recipe not found"
+          ? "Recipe not found"
+          : "failed to load "}
+      </h1>
+    );
   }
 
   const searchHandler = (event) => {
@@ -37,6 +50,14 @@ export default function MainPage() {
       setSearchWord("");
     }
   };
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!data) {
+    return null;
+  }
 
   const filteredRecipes = getFilteredRecipes(data, searchWord);
 
@@ -61,8 +82,7 @@ export default function MainPage() {
             <Link href={`/editpage/${recipe._id}`}>
               <EditButton>Edit recipe</EditButton>
             </Link>
-
-            <DeleteIcon />
+            <DeleteIcon onClick={() => handleDelete(recipe)}>Delete</DeleteIcon>
           </StyledCard>
         </ContainerStyle>
       ))}
