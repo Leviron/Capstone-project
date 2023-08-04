@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
+import Link from "next/link";
 
 export const StyledCard = styled.div`
   box-sizing: border-box;
@@ -43,7 +44,7 @@ export const ContainerStyle = styled.div`
   margin: 1rem;
 `;
 
-export const MoreDetailButton = styled.button`
+export const LinkStyled = styled(Link)`
   width: 10rem;
   height: 2rem;
   border-radius: 20px;
@@ -57,6 +58,8 @@ export const MoreDetailButton = styled.button`
   font-weight: bold;
   text-align: center;
   justify-content: flex-end;
+  text-decoration: none;
+  
   cursor: pointer;
 
   &:hover {
@@ -109,7 +112,7 @@ export const Wrapper = styled.div`
   background-color: white;
 `;
 
-export const EditButton = styled.button`
+export const DeleteButton = styled.button`
   width: 10rem;
   height: 2rem;
   border-radius: 20px;
@@ -123,12 +126,14 @@ export const EditButton = styled.button`
   font-weight: bold;
   text-align: center;
   justify-content: flex-end;
+  text-decoration: none;
+  
   cursor: pointer;
 
   &:hover {
     background-color: black;
     color: white;
-  }
+
 `;
 
 export const DeleteIcon = styled(MdDelete)`

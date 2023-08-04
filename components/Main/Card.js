@@ -4,17 +4,16 @@ import {
   ContainerStyle,
   StyledCard,
   SearchContainer,
-  MoreDetailButton,
   SearchIcon,
-  EditButton,
   DeleteIcon,
+  LinkStyled,
+  DeleteButton,
 } from "./Card.styled";
-import Link from "next/link";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
-export default function MainPage({ recipes }) {
+export default function MainPage() {
   const { data, isLoading, error } = useSWR("/api/recipes");
   const router = useRouter();
   const [searchWord, setSearchWord] = useState("");
@@ -84,13 +83,15 @@ export default function MainPage({ recipes }) {
         <ContainerStyle key={recipe._id}>
           <StyledCard>
             <p>{recipe.name}</p>
-            <Link href={`/moredetails/${recipe._id}`}>
-              <MoreDetailButton>More Details</MoreDetailButton>
-            </Link>
-            <Link href={`/editpage/${recipe._id}`}>
-              <EditButton>Edit recipe</EditButton>
-            </Link>
-            <DeleteIcon onClick={() => handleDelete(recipe)}>Delete</DeleteIcon>
+            <LinkStyled href={`/moredetails/${recipe._id}`}>
+              More details
+            </LinkStyled>
+            <LinkStyled href={`/editpage/${recipe._id}`}>
+              Edit recipe
+            </LinkStyled>
+            <DeleteButton onClick={() => handleDelete(recipe)}>
+              <DeleteIcon />
+            </DeleteButton>
           </StyledCard>
         </ContainerStyle>
       ))}
