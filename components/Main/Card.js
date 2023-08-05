@@ -82,7 +82,7 @@ export default function MainPage() {
       {filteredRecipes.map((recipe) => (
         <ContainerStyle key={recipe._id}>
           <StyledCard>
-            <li>{recipe.name}</li>
+            <p>{recipe.name}</p>
             <LinkStyled href={`/moredetails/${recipe._id}`}>
               More details
             </LinkStyled>

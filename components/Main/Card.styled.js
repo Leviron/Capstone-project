@@ -40,7 +40,7 @@ export const StyledCard = styled.div`
   }
 `;
 
-export const ContainerStyle = styled.ul`
+export const ContainerStyle = styled.div`
   margin: 1rem;
 `;
 
