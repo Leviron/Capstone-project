@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const StyledCard = styled.div`
   box-sizing: border-box;
-  width: 40vw;
+  width: 50vw;
   height: 60vh;
   background: rgba(217, 217, 217, 0.58);
   border: 1px solid white;
@@ -40,13 +40,10 @@ export const StyledCard = styled.div`
 
 export const MoreDetailsLink = styled(Link)`
   height: 3vh;
-  width: 50%;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  align-self: center;
-  background-color: white;
+  width: 8vw;
   border-radius: 20px;
   border: 1px solid black;
+  background-color: white;
   color: black;
   font-size: 1rem;
   font-weight: bold;
@@ -62,31 +59,34 @@ export const MoreDetailsLink = styled(Link)`
 
   a {
     text-decoration: none;
-    background-color: transparent;
+    color: black;
   }
 `;
 
 export const CardList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   list-style-type: none;
+  margin-left: 0px;
+  margin: 0;
+  padding: 0;
 `;
 
-export const ContainerStyle = styled.li`
-  width: 100%;
-`;
+export const ContainerStyle = styled.li``;
 
 export const SearchContainer = styled.div`
   display: flex;
-  margin-top: 3vh;
-
-  grid-column: 1 / 3;
-  grid-column.start: 1;
-  grid-column-end: 3;
-  align-items: center;
   justify-content: center;
 
+  margin-top: 3vh;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
   border-radius: 20px;
-  border: 1px solid lightgrey;
-  background-color: lightgrey;
+  border: 1px solid, rgba(217, 217, 217, 0.58);
+  background: rgba(217, 217, 217, 0.58);
   svg {
     margin-left: 1rem;
     align-self: center;
@@ -110,9 +110,8 @@ export const SearchIcon = styled(BsSearch)`
 `;
 
 export const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
 `;
@@ -136,4 +135,11 @@ export const EditIcon = styled(MdEdit)`
   color: grey;
 
   cursor: pointer;
+`;
+
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 `;

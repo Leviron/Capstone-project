@@ -9,11 +9,12 @@ export const NavContainer = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background: rgba(217, 217, 217, 0.58);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+  background-color: #f5f5f5;
 
   border-top: 1px solid #eaeaea;
 `;
@@ -24,11 +25,10 @@ export const NavButton = styled(Link)`
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-color: white;
+
   margin-left: 30px;
   margin-right: 30px;
 
-  with: 90%;
   &:hover {
     background-color: #f5f5f5;
   }

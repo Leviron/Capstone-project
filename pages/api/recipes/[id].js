@@ -31,4 +31,21 @@ export default async function handler(request, response) {
       response.status(500).json({ message: "Internal server error" });
     }
   }
+
+  if (request.method === "PUT") {
+    try {
+      const updatedRecipe = await Recipe.findByIdAndUpdate(id, {
+        $set: request.body,
+      });
+
+      if (!updatedRecipe) {
+        return response.status(404).json({ message: "Recipe not found" });
+      }
+
+      response.status(200).json({ status: `Recipe ${id} updated!` });
+    } catch (error) {
+      console.error("Error updating recipe:", error);
+      response.status(500).json({ message: "Internal server error" });
+    }
+  }
 }

@@ -1,5 +1,5 @@
-import CreateRecipe from "../../components/Form";
+import EditRecipe from "../../components/Form/Edit";
 
-export default function CreatePage() {
-  return <CreateRecipe />;
+export default function EditPage() {
+  return <EditRecipe />;
 }
