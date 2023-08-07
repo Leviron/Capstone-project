@@ -66,7 +66,11 @@ export const MoreDetailsLink = styled(Link)`
   }
 `;
 
-export const ContainerStyle = styled.div`
+export const CardList = styled.ul`
+  list-style-type: none;
+`;
+
+export const ContainerStyle = styled.li`
   width: 100%;
 `;
 

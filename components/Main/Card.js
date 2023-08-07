@@ -10,6 +10,7 @@ import {
   EditIcon,
   EditLink,
   MoreDetailsLink,
+  CardList,
 } from "./Card.styled";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
@@ -80,23 +81,24 @@ export default function MainPage() {
           onChange={searchHandler}
         />
       </SearchContainer>
-
-      {filteredRecipes.map((recipe) => (
-        <ContainerStyle key={recipe._id}>
-          <StyledCard>
-            <p>{recipe.name}</p>
-            <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
-              More details
-            </MoreDetailsLink>
-            <EditLink href={`/editpage/${recipe._id}`}>
-              <EditIcon />
-            </EditLink>
-            <DeleteButton onClick={() => handleDelete(recipe)}>
-              <DeleteIcon />
-            </DeleteButton>
-          </StyledCard>
-        </ContainerStyle>
-      ))}
+      <CardList>
+        {filteredRecipes.map((recipe) => (
+          <ContainerStyle key={recipe._id}>
+            <StyledCard>
+              <p>{recipe.name}</p>
+              <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
+                More details
+              </MoreDetailsLink>
+              <EditLink href={`/editpage/${recipe._id}`}>
+                <EditIcon />
+              </EditLink>
+              <DeleteButton onClick={() => handleDelete(recipe)}>
+                <DeleteIcon />
+              </DeleteButton>
+            </StyledCard>
+          </ContainerStyle>
+        ))}
+      </CardList>
     </Wrapper>
   );
 }
