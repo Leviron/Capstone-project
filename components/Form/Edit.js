@@ -7,9 +7,11 @@ export default function EditRecipe() {
   const router = useRouter();
   const { id } = router.query;
 
+  const initialIngredients = [{ name: "", quantity: "" }];
+
   const [recipe, setRecipe] = useState({
     name: "",
-    ingredients: "",
+    ingredients: initialIngredients,
     quantity: 0,
     steps: "",
     timers: "",
@@ -65,6 +67,16 @@ export default function EditRecipe() {
     }));
   };
 
+  const handleIngredientChange = (index, field, event) => {
+    const updatedIngredients = [...recipe.ingredients];
+    updatedIngredients[index][field] = event.target.value;
+
+    setRecipe({
+      ...recipe,
+      ingredients: updatedIngredients,
+    });
+  };
+
   return (
     <>
       <Heading>Edit Recipe</Heading>
@@ -77,33 +89,32 @@ export default function EditRecipe() {
           onChange={handleInputChange}
           required
         />
-        <input
-          type="text"
-          name="ingredients"
-          placeholder="Ingredient Name"
-          value={recipe.ingredients}
-          onChange={handleInputChange}
-        />
-        <input
-          type="number"
-          name="quantity"
-          placeholder="Ingredient Quantity"
-          value={recipe.quantity}
-          onChange={handleInputChange}
-        />
+
+        {recipe.ingredients.map((ingredient, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              name={`ingredients[${index}].name`}
+              placeholder="Ingredient Name"
+              value={ingredient.name}
+              onChange={(e) => handleIngredientChange(index, "name", e)}
+            />
+            <input
+              type="text"
+              name={`ingredients[${index}].quantity`}
+              placeholder="Ingredient Quantity"
+              value={ingredient.quantity}
+              onChange={(e) => handleIngredientChange(index, "quantity", e)}
+            />
+          </div>
+        ))}
+
         <textarea
           name="steps"
           placeholder="Steps (separate by new lines)"
           value={recipe.steps}
           onChange={handleInputChange}
         ></textarea>
-        <input
-          type="text"
-          name="timers"
-          placeholder="Timers (separate by commas)"
-          value={recipe.timers}
-          onChange={handleInputChange}
-        />
 
         <FormButton type="submit">Update Recipe</FormButton>
       </FormContainer>

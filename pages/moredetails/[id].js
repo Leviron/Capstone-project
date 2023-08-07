@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Link from "next/link";
 import styled from "styled-components";
+import { EditIcon } from "../../components/Main/Card.styled";
 
 export default function MoreDetails() {
   const router = useRouter();
@@ -27,6 +28,9 @@ export default function MoreDetails() {
         </Link>
       </Header>
       <MoreDetailsLayout>
+        <Link href={`/editpage/${recipe._id}`}>
+          <EditIcon />
+        </Link>
         <h1>{recipe.name}</h1>
         {recipe.ingredients && (
           <div>
