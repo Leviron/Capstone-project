@@ -39,26 +39,26 @@ export const StyledCard = styled.div`
 `;
 
 export const MoreDetailsLink = styled(Link)`
-  height: 3vh;
-  width: 8vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 6vh;
+  width: 18vw;
   border-radius: 20px;
   border: 1px solid black;
   background-color: white;
   color: black;
-  font-size: 1rem;
+  font-size: 100%;
   font-weight: bold;
-  text-align: center;
-  justify-content: flex-end;
   text-decoration: none;
-
   cursor: pointer;
 
-  :hover {
-    color: black;
+  a {
+    width: 100%;
+    height: 100%;
   }
 
-  a {
-    text-decoration: none;
+  :hover {
     color: black;
   }
 `;
