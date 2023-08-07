@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FormContainer, FormButton } from "./styles-form";
+import { FormContainer, FormButton, AddButton } from "./styles-form";
 import { Heading } from "./styles-form";
 
 export default function EditRecipe({ id, onSubmit }) {
@@ -40,6 +40,18 @@ export default function EditRecipe({ id, onSubmit }) {
   const handleIngredientChange = (index, field, event) => {
     const updatedIngredients = [...recipe.ingredients];
     updatedIngredients[index][field] = event.target.value;
+
+    setRecipe((prevRecipe) => ({
+      ...prevRecipe,
+      ingredients: updatedIngredients,
+    }));
+  };
+
+  const addIngredient = () => {
+    setRecipe((prevRecipe) => ({
+      ...prevRecipe,
+      ingredients: [...prevRecipe.ingredients, { name: "", quantity: "" }],
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -78,10 +90,13 @@ export default function EditRecipe({ id, onSubmit }) {
             />
           </div>
         ))}
+        <AddButton type="button" onClick={addIngredient}>
+          + Add Ingredient
+        </AddButton>
 
         <textarea
           name="steps"
-          placeholder="Steps (separate by new lines)"
+          placeholder="Steps to make the recipe"
           value={recipe.steps}
           onChange={handleInputChange}
         ></textarea>
