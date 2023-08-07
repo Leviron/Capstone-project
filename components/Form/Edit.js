@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FormContainer, FormButton } from "./styles-form";
 import { Heading } from "./styles-form";
 
-export default function EditRecipeComponent({ id, onSubmit }) {
+export default function EditRecipe({ id, onSubmit }) {
   const initialIngredients = [{ name: "", quantity: "" }];
 
   const [recipe, setRecipe] = useState({
@@ -87,8 +87,6 @@ export default function EditRecipeComponent({ id, onSubmit }) {
         ></textarea>
 
         <FormButton type="submit">Update Recipe</FormButton>
-
-        {/* Rest of your form inputs */}
       </FormContainer>
     </>
   );
