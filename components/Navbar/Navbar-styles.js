@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { GiCook } from "react-icons/gi";
 import { IoMdCreate } from "react-icons/io";
 import { MdMenuBook } from "react-icons/md";
+import { HiPlus } from "react-icons/hi";
 import Link from "next/link";
 
 export const NavContainer = styled.nav`
@@ -43,7 +44,7 @@ export const MyRecipesIcon = styled(GiCook)`
   color: #000;
 `;
 
-export const AddRecipesIcon = styled(IoMdCreate)`
+export const AddRecipesIcon = styled(HiPlus)`
   font-size: 3rem;
   display: flex;
   flex-direction: column;

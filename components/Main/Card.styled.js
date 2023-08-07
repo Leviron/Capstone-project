@@ -52,14 +52,14 @@ export const MoreDetailsLink = styled(Link)`
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
-
   a {
     width: 100%;
     height: 100%;
   }
 
   :hover {
-    color: black;
+    background-color: black;
+    color: white;
   }
 `;
 
@@ -124,15 +124,15 @@ export const DeleteButton = styled.button`
 export const EditLink = styled(Link)``;
 
 export const DeleteIcon = styled(MdDelete)`
-  font-size: 100%;
-  color: grey;
+  font-size: 150%;
+  color: black;
 
   cursor: pointer;
 `;
 
 export const EditIcon = styled(MdEdit)`
-  font-size: 100%;
-  color: grey;
+  font-size: 150%;
+  color: black;
 
   cursor: pointer;
 `;
