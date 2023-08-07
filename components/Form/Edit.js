@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 import { FormContainer, FormButton } from "./styles-form";
 import { Heading } from "./styles-form";
-import { useRouter } from "next/router";
 
-export default function EditRecipe() {
-  const router = useRouter();
-  const { id } = router.query;
-
+export default function EditRecipeComponent({ id, onSubmit }) {
   const initialIngredients = [{ name: "", quantity: "" }];
 
   const [recipe, setRecipe] = useState({
@@ -33,32 +29,6 @@ export default function EditRecipe() {
     }
   };
 
-  const handleEdit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const updatedRecipe = Object.fromEntries(formData);
-
-    try {
-      const response = await fetch(`/api/recipes/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedRecipe),
-      });
-      if (!response.ok) {
-        window.alert("Problem updating the recipe!");
-        return;
-      }
-
-      await fetchRecipe(id);
-
-      router.push("/");
-    } catch (error) {
-      window.alert("Problem updating the recipe!");
-    }
-  };
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setRecipe((prevRecipe) => ({
@@ -70,17 +40,17 @@ export default function EditRecipe() {
   const handleIngredientChange = (index, field, event) => {
     const updatedIngredients = [...recipe.ingredients];
     updatedIngredients[index][field] = event.target.value;
+  };
 
-    setRecipe({
-      ...recipe,
-      ingredients: updatedIngredients,
-    });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmit(recipe);
   };
 
   return (
     <>
       <Heading>Edit Recipe</Heading>
-      <FormContainer onSubmit={handleEdit}>
+      <FormContainer onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
@@ -117,6 +87,8 @@ export default function EditRecipe() {
         ></textarea>
 
         <FormButton type="submit">Update Recipe</FormButton>
+
+        {/* Rest of your form inputs */}
       </FormContainer>
     </>
   );
