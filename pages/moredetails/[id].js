@@ -1,12 +1,7 @@
-import {
-  MoreDetailsLayout,
-  Header,
-  Ingredients,
-  GoBackButton,
-} from "../../components/moredetails_styled/styled_details";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function MoreDetails() {
   const router = useRouter();
@@ -32,18 +27,20 @@ export default function MoreDetails() {
         </Link>
       </Header>
       <MoreDetailsLayout>
-        <h2>{recipe.name}</h2>
+        <h1>{recipe.name}</h1>
         {recipe.ingredients && (
-          <Ingredients>
-            <ul>
-              <h3>Ingredients</h3>
-              {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>
-                  {ingredient.quantity} {ingredient.name} - {ingredient.type}
-                </li>
-              ))}
-            </ul>
-          </Ingredients>
+          <div>
+            <h3>Ingredients</h3>
+            <Ingredients>
+              <ul>
+                {recipe.ingredients.map((ingredient, index) => (
+                  <li key={index}>
+                    {ingredient.quantity} {ingredient.name} - {ingredient.type}
+                  </li>
+                ))}
+              </ul>
+            </Ingredients>
+          </div>
         )}
         {recipe.instructions && (
           <article>
@@ -69,3 +66,75 @@ export default function MoreDetails() {
     </>
   );
 }
+
+const MoreDetailsLayout = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  border: 1px solid black;
+  border-radius: 20px;
+  border-color: grey;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+`;
+
+const GoBackButton = styled.button`
+  align-self: center;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 20px;
+  border: 1px solid black;
+  border-color: grey;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+`;
+
+const Ingredients = styled.ul`
+  h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  ul {
+    width: 100%;
+    font-size: 1.5rem;
+
+    text-align: center;
+    text-decoration: none;
+  }
+
+  li {
+    list-style: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+`;

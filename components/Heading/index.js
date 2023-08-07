@@ -8,7 +8,7 @@ export default function Header() {
     <Heading>
       <KnifeIcon />
       <SpoonIcon />
-      <h1>My Recipe</h1>
+      <h1>My Recipe App</h1>
       <PotIcon />
     </Heading>
   );

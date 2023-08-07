@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { GiCook } from "react-icons/gi";
 import { IoMdCreate } from "react-icons/io";
 import { MdMenuBook } from "react-icons/md";
+import Link from "next/link";
 
 export const NavContainer = styled.nav`
   position: fixed;
@@ -10,29 +11,24 @@ export const NavContainer = styled.nav`
   right: 0;
   background-color: #fff;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 10px;
-  width: 50% 50%;
+  width: 100%;
+
   border-top: 1px solid #eaeaea;
-  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
 `;
 
-export const NavButton = styled.button`
+export const NavButton = styled(Link)`
   cursor: pointer;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  border-radius: 5px;
-  border: 1px solid #eaeaea;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   background-color: white;
   margin-left: 30px;
   margin-right: 30px;
-  width: 90%;
 
+  with: 90%;
   &:hover {
     background-color: #f5f5f5;
   }
@@ -44,11 +40,7 @@ export const MyRecipesIcon = styled(GiCook)`
   flex-direction: column;
   align-items: center;
   icon-align: center;
-
-  a {
-    font-size: 0.8rem;
-    text-decoration: none;
-  }
+  color: #000;
 `;
 
 export const AddRecipesIcon = styled(IoMdCreate)`
@@ -58,11 +50,7 @@ export const AddRecipesIcon = styled(IoMdCreate)`
   align-items: center;
   icon-align: center;
   text-align: center;
-
-  a {
-    font-size: 0.8rem;
-    text-align: center;
-  }
+  color: #000;
 `;
 
 export const HomeIcon = styled(MdMenuBook)`
@@ -71,9 +59,5 @@ export const HomeIcon = styled(MdMenuBook)`
   flex-direction: column;
   align-items: center;
   icon-align: center;
-
-  a {
-    font-size: 0.8rem;
-    text-align: center;
-  }
+  color: #000;
 `;

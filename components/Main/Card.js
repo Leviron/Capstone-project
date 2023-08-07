@@ -1,29 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Wrapper,
   ContainerStyle,
   StyledCard,
   SearchContainer,
-  MoreDetailButton,
   SearchIcon,
+  DeleteIcon,
+  DeleteButton,
+  EditIcon,
+  EditLink,
+  MoreDetailsLink,
+  CardList,
 } from "./Card.styled";
-import Link from "next/link";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 
 export default function MainPage() {
-  const { data, isLoading } = useSWR("/api/recipes", {
-    initialData: [],
-    revalidateOnMount: true,
-  });
-
+  const { data, isLoading, error } = useSWR("/api/recipes");
+  const router = useRouter();
   const [searchWord, setSearchWord] = useState("");
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-  if (!data) {
-    return null;
+  useEffect(() => {
+    if (!isLoading && data) {
+      const filteredData = getFilteredRecipes(data, searchWord);
+      setFilteredRecipes(filteredData);
+    }
+  }, [data, searchWord, isLoading]);
+
+  const handleDelete = async (recipe) => {
+    const response = await fetch(`/api/recipes/${recipe._id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      setFilteredRecipes((prevRecipes) =>
+        prevRecipes.filter((refresh) => refresh._id !== recipe._id)
+      );
+    } else {
+      const responseData = await response.json();
+      console.error(responseData.message);
+    }
+  };
+
+  if (error) {
+    return (
+      <h1>
+        {error.message === "Recipe not found"
+          ? "Recipe not found"
+          : "failed to load "}
+      </h1>
+    );
   }
 
   const searchHandler = (event) => {
@@ -36,7 +63,13 @@ export default function MainPage() {
     }
   };
 
-  const filteredRecipes = getFilteredRecipes(data, searchWord);
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <Wrapper>
@@ -48,17 +81,24 @@ export default function MainPage() {
           onChange={searchHandler}
         />
       </SearchContainer>
-
-      {filteredRecipes.map((recipe) => (
-        <ContainerStyle key={recipe._id}>
-          <StyledCard>
-            <p>{recipe.name}</p>
-            <Link href={`/moredetails/${recipe._id}`}>
-              <MoreDetailButton>More Details</MoreDetailButton>
-            </Link>
-          </StyledCard>
-        </ContainerStyle>
-      ))}
+      <CardList>
+        {filteredRecipes.map((recipe) => (
+          <ContainerStyle key={recipe._id}>
+            <StyledCard>
+              <p>{recipe.name}</p>
+              <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
+                More details
+              </MoreDetailsLink>
+              <EditLink href={`/editpage/${recipe._id}`}>
+                <EditIcon />
+              </EditLink>
+              <DeleteButton onClick={() => handleDelete(recipe)}>
+                <DeleteIcon />
+              </DeleteButton>
+            </StyledCard>
+          </ContainerStyle>
+        ))}
+      </CardList>
     </Wrapper>
   );
 }
