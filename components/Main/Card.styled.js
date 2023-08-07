@@ -34,43 +34,40 @@ export const StyledCard = styled.div`
 
   p {
     font-weight: bold;
+    font-size: 1.5rem;
   }
 `;
 
 export const MoreDetailsLink = styled(Link)`
-  // height: 3vh;
-  // width: 100%;
-  // margin-top: 1rem;
-  // margin-bottom: 1rem;
+  height: 3vh;
+  width: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-self: center;
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid black;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  justify-content: flex-end;
+  text-decoration: none;
 
-  // color: black;
-  // font-size: 1rem;
-  // font-weight: bold;
-  // text-align: center;
-  // justify-content: flex-end;
-  // text-decoration: none;
+  cursor: pointer;
 
-  // cursor: pointer;
+  :hover {
+    color: black;
+  }
 
-  // a {
-  //   text-decoration: none;
-  //   background-color: transparent;
-  // }
+  a {
+    text-decoration: none;
+    background-color: transparent;
+  }
 `;
 
 export const ContainerStyle = styled.div`
-  // width: 100%;
-  // margin: 5%;
-  // display: grid;
-  // git-template-columns: auto auto;
-  // align-content: center;
-  // justify-content: center;
-
-  // grid-gap: 2rem;
-  // display: flex;
-  // flex-direction: column;
-
-  // align-items: center;
+  width: 100%;
 `;
 
 export const SearchContainer = styled.div`
@@ -121,21 +118,18 @@ export const DeleteButton = styled.button`
   background-color: transparent;
 `;
 
-export const EditLink = styled(Link)`
-  // border: none;
-  // background-color: transparent;
-`;
+export const EditLink = styled(Link)``;
 
 export const DeleteIcon = styled(MdDelete)`
-  // font-size: 1rem;
-  // color: grey;
-  // margin-right: 1rem;
-  // cursor: pointer;
+  font-size: 100%;
+  color: grey;
+
+  cursor: pointer;
 `;
 
 export const EditIcon = styled(MdEdit)`
-  // font-size: 1rem;
-  // color: grey;
-  // margin-right: 1rem;
-  // cursor: pointer;
+  font-size: 100%;
+  color: grey;
+
+  cursor: pointer;
 `;
