@@ -6,8 +6,10 @@ import {
   SearchContainer,
   SearchIcon,
   DeleteIcon,
-  LinkStyled,
   DeleteButton,
+  EditIcon,
+  EditLink,
+  MoreDetailsLink,
 } from "./Card.styled";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
@@ -83,12 +85,12 @@ export default function MainPage() {
         <ContainerStyle key={recipe._id}>
           <StyledCard>
             <p>{recipe.name}</p>
-            <LinkStyled href={`/moredetails/${recipe._id}`}>
+            <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
               More details
-            </LinkStyled>
-            <LinkStyled href={`/editpage/${recipe._id}`}>
-              Edit recipe
-            </LinkStyled>
+            </MoreDetailsLink>
+            <EditLink href={`/editpage/${recipe._id}`}>
+              <EditIcon />
+            </EditLink>
             <DeleteButton onClick={() => handleDelete(recipe)}>
               <DeleteIcon />
             </DeleteButton>
