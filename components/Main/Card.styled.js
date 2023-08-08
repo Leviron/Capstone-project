@@ -128,6 +128,10 @@ export const EditLink = styled(Link)``;
 export const LikeIcon = styled(AiOutlineHeart)`
   font-size: 1.5rem;
   cursor: pointer;
+  color: black;
+  :hover {
+    color: red;
+  }
 `;
 
 export const FavoriteIcon = styled(RiBookmarkLine)`
@@ -157,6 +161,15 @@ export const ButtonContainer = styled.div`
 `;
 
 export const LikeButton = styled.button`
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+`;
+
+export const FavoriteButton = styled.button`
   border: none;
   background-color: transparent;
   display: flex;

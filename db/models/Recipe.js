@@ -7,6 +7,7 @@ const recipeSchema = new Schema({
   steps: { type: [String], required: false },
   imageURL: { type: String, required: false },
   likes: { type: Number, default: 0 },
+  favorite: { type: Boolean, default: false },
 });
 
 const Recipe = mongoose.models.Recipe || mongoose.model("Recipe", recipeSchema);
