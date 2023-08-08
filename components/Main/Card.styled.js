@@ -155,3 +155,12 @@ export const ButtonContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `;
+
+export const LikeButton = styled.button`
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+`;

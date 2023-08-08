@@ -14,16 +14,17 @@ import {
   ButtonContainer,
   LikeIcon,
   FavoriteIcon,
+  LikeButton,
 } from "./Card.styled";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 
 export default function MainPage() {
   const { data, isLoading, error } = useSWR("/api/recipes");
-  const router = useRouter();
+
   const [searchWord, setSearchWord] = useState("");
   const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -46,15 +47,27 @@ export default function MainPage() {
     }
   };
 
-  if (error) {
-    return (
-      <h1>
-        {error.message === "Recipe not found"
-          ? "Recipe not found"
-          : "failed to load "}
-      </h1>
-    );
-  }
+  const handleLike = async (recipe) => {
+    const updatedRecipe = {
+      ...recipe,
+      likes: recipe.likes + 1,
+    };
+
+    const response = await fetch(`/api/recipes/${recipe._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedRecipe),
+    });
+
+    if (response.ok) {
+      setCount(count + 1);
+    } else {
+      const responseData = await response.json();
+      console.error("Error updating recipe:", responseData.message);
+    }
+  };
 
   const searchHandler = (event) => {
     const searchWord = event?.target.value;
@@ -65,6 +78,16 @@ export default function MainPage() {
       setSearchWord("");
     }
   };
+
+  if (error) {
+    return (
+      <h1>
+        {error.message === "Recipe not found"
+          ? "Recipe not found"
+          : "failed to load "}
+      </h1>
+    );
+  }
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -99,7 +122,9 @@ export default function MainPage() {
                 <DeleteButton onClick={() => handleDelete(recipe)}>
                   <DeleteIcon />
                 </DeleteButton>
-                <LikeIcon />
+                <LikeButton onClick={() => handleLike(recipe)}>
+                  {recipe.likes} <LikeIcon />
+                </LikeButton>
                 <FavoriteIcon />
               </ButtonContainer>
             </StyledCard>

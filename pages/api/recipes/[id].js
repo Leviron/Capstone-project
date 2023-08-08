@@ -34,15 +34,16 @@ export default async function handler(request, response) {
 
   if (request.method === "PUT") {
     try {
-      const updatedRecipe = await Recipe.findByIdAndUpdate(id, {
-        $set: request.body,
-      });
+      const recipeToUpdate = await Recipe.findById(id);
 
-      if (!updatedRecipe) {
+      if (!recipeToUpdate) {
         return response.status(404).json({ message: "Recipe not found" });
       }
 
-      response.status(200).json({ status: `Recipe ${id} updated!` });
+      recipeToUpdate.likes = recipeToUpdate.likes + 1;
+      const updatedRecipe = await recipeToUpdate.save();
+
+      response.status(200).json(updatedRecipe);
     } catch (error) {
       console.error("Error updating recipe:", error);
       response.status(500).json({ message: "Internal server error" });
