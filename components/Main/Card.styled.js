@@ -124,14 +124,14 @@ export const DeleteButton = styled.button`
 export const EditLink = styled(Link)``;
 
 export const DeleteIcon = styled(MdDelete)`
-  font-size: 150%;
+  font-size: 1.5rem;
   color: black;
 
   cursor: pointer;
 `;
 
 export const EditIcon = styled(MdEdit)`
-  font-size: 150%;
+  font-size: 1.5rem;
   color: black;
 
   cursor: pointer;
