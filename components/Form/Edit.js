@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FormContainer, FormButton, AddButton } from "./styles-form";
 import { Heading } from "./styles-form";
+import NavigationBar from "../Navbar";
 
 export default function EditRecipe({ initialRecipe, onSubmit }) {
   const [recipe, setRecipe] = useState(initialRecipe);
@@ -13,20 +14,29 @@ export default function EditRecipe({ initialRecipe, onSubmit }) {
     }));
   };
 
-  const handleIngredientChange = (index, field, event) => {
+  const handleIngredientChange = (ingredientId, field, event) => {
     const updatedIngredients = [...recipe.ingredients];
-    updatedIngredients[index][field] = event.target.value;
+    const index = recipe.ingredients.findIndex(
+      (ingredient) => ingredient.id === ingredientId
+    );
 
-    setRecipe((prevRecipe) => ({
-      ...prevRecipe,
-      ingredients: updatedIngredients,
-    }));
+    if (index !== -1) {
+      updatedIngredients[index][field] = event.target.value;
+
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        ingredients: updatedIngredients,
+      }));
+    }
   };
 
   const addIngredient = () => {
     setRecipe((prevRecipe) => ({
       ...prevRecipe,
-      ingredients: [...prevRecipe.ingredients, { name: "", quantity: "" }],
+      ingredients: [
+        ...prevRecipe.ingredients,
+        { id: Date.now(), name: "", quantity: "" },
+      ],
     }));
   };
 
@@ -48,21 +58,23 @@ export default function EditRecipe({ initialRecipe, onSubmit }) {
           required
         />
 
-        {recipe.ingredients.map((ingredient, index) => (
-          <div key={index}>
+        {recipe.ingredients.map((ingredient) => (
+          <div key={ingredient.id}>
             <input
               type="text"
-              name={`ingredients[${index}].name`}
+              name={`ingredients[${ingredient.id}].name`}
               placeholder="Ingredient Name"
               value={ingredient.name}
-              onChange={(e) => handleIngredientChange(index, "name", e)}
+              onChange={(e) => handleIngredientChange(ingredient.id, "name", e)}
             />
             <input
               type="text"
-              name={`ingredients[${index}].quantity`}
+              name={`ingredients[${ingredient.id}].quantity`}
               placeholder="Ingredient Quantity"
               value={ingredient.quantity}
-              onChange={(e) => handleIngredientChange(index, "quantity", e)}
+              onChange={(e) =>
+                handleIngredientChange(ingredient.id, "quantity", e)
+              }
             />
           </div>
         ))}
@@ -79,6 +91,7 @@ export default function EditRecipe({ initialRecipe, onSubmit }) {
 
         <FormButton type="submit">Update Recipe</FormButton>
       </FormContainer>
+      <NavigationBar />
     </>
   );
 }
