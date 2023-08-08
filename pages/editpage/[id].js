@@ -1,32 +1,11 @@
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import useSWR from "swr";
 import EditRecipe from "../../components/Form/Edit";
-
-async function fetchRecipe(id) {
-  try {
-    const response = await fetch(`/api/recipes/${id}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching recipe:", error);
-    return null;
-  }
-}
 
 export default function EditRecipePage() {
   const router = useRouter();
   const { id } = router.query;
-
-  const [initialRecipe, setInitialRecipe] = useState(null);
-
-  useEffect(() => {
-    async function fetchInitialRecipe() {
-      const recipe = await fetchRecipe(id);
-      setInitialRecipe(recipe);
-    }
-
-    fetchInitialRecipe();
-  }, [id]);
+  const { data: initialRecipe, isLoading } = useSWR(`/api/recipes/${id}`);
 
   const handleSubmit = async (updatedRecipe) => {
     const response = await fetch(`/api/recipes/${id}`, {
@@ -45,7 +24,7 @@ export default function EditRecipePage() {
     router.push("/");
   };
 
-  if (initialRecipe === null) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
