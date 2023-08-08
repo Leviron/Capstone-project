@@ -1,33 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FormContainer, FormButton, AddButton } from "./styles-form";
 import { Heading } from "./styles-form";
 
-export default function EditRecipe({ id, onSubmit }) {
-  const initialIngredients = [{ name: "", quantity: "" }];
-
-  const [recipe, setRecipe] = useState({
-    name: "",
-    ingredients: initialIngredients,
-    quantity: 0,
-    steps: "",
-    timers: "",
-  });
-
-  useEffect(() => {
-    if (id) {
-      fetchRecipe(id);
-    }
-  }, [id]);
-
-  const fetchRecipe = async (id) => {
-    try {
-      const response = await fetch(`/api/recipes/${id}`);
-      const data = await response.json();
-      setRecipe(data);
-    } catch (error) {
-      console.error("Error fetching recipe:", error);
-    }
-  };
+export default function EditRecipe({ initialRecipe, onSubmit }) {
+  const [recipe, setRecipe] = useState(initialRecipe);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
