@@ -97,7 +97,7 @@ export default function MainPage() {
   const handleFavorite = async (recipe) => {
     const updatedRecipe = {
       ...recipe,
-      favorite: !recipe.favorite,
+      isFavorite: !recipe.isFavorite,
     };
 
     const response = await fetch(`/api/recipes/${recipe._id}`, {
@@ -112,13 +112,13 @@ export default function MainPage() {
       setFilteredRecipes((prevRecipes) =>
         prevRecipes.map((prevRecipe) =>
           prevRecipe._id === recipe._id
-            ? { ...prevRecipe, favorite: !recipe.favorite }
+            ? { ...prevRecipe, isFavorite: updatedRecipe.isFavorite }
             : prevRecipe
         )
       );
     } else {
       const responseData = await response.json();
-      console.error("Error updating recipe:", responseData.message);
+      console.error("Error updating favorite:", responseData.message);
     }
   };
 
