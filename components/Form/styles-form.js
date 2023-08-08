@@ -43,3 +43,5 @@ export const FormButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
 `;
+
+export const AddButton = styled.button``;

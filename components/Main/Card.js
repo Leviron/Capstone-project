@@ -11,6 +11,7 @@ import {
   EditLink,
   MoreDetailsLink,
   CardList,
+  ButtonContainer,
 } from "./Card.styled";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
@@ -89,12 +90,14 @@ export default function MainPage() {
               <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
                 More details
               </MoreDetailsLink>
-              <EditLink href={`/editpage/${recipe._id}`}>
-                <EditIcon />
-              </EditLink>
-              <DeleteButton onClick={() => handleDelete(recipe)}>
-                <DeleteIcon />
-              </DeleteButton>
+              <ButtonContainer>
+                <EditLink href={`/editpage/${recipe._id}`}>
+                  <EditIcon />
+                </EditLink>
+                <DeleteButton onClick={() => handleDelete(recipe)}>
+                  <DeleteIcon />
+                </DeleteButton>
+              </ButtonContainer>
             </StyledCard>
           </ContainerStyle>
         ))}

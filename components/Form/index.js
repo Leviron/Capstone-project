@@ -44,11 +44,6 @@ export default function CreateRecipe() {
           name="steps"
           placeholder="Steps (separate by new lines)"
         ></textarea>
-        <input
-          type="number"
-          name="timers"
-          placeholder="Timers (separate by commas)"
-        />
 
         <FormButton>Submit </FormButton>
       </FormContainer>{" "}
