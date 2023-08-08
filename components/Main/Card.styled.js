@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
+import { AiOutlineHeart } from "react-icons/ai";
+import { RiBookmarkLine } from "react-icons/ri";
 import Link from "next/link";
 
 export const StyledCard = styled.div`
@@ -122,6 +124,16 @@ export const DeleteButton = styled.button`
 `;
 
 export const EditLink = styled(Link)``;
+
+export const LikeIcon = styled(AiOutlineHeart)`
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
+
+export const FavoriteIcon = styled(RiBookmarkLine)`
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
 
 export const DeleteIcon = styled(MdDelete)`
   font-size: 1.5rem;

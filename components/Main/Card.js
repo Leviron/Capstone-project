@@ -12,6 +12,8 @@ import {
   MoreDetailsLink,
   CardList,
   ButtonContainer,
+  LikeIcon,
+  FavoriteIcon,
 } from "./Card.styled";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
@@ -97,6 +99,8 @@ export default function MainPage() {
                 <DeleteButton onClick={() => handleDelete(recipe)}>
                   <DeleteIcon />
                 </DeleteButton>
+                <LikeIcon />
+                <FavoriteIcon />
               </ButtonContainer>
             </StyledCard>
           </ContainerStyle>
