@@ -160,9 +160,7 @@ export default function MainPage() {
                   {recipe.likes} <LikeIcon />
                 </LikeButton>
                 <FavoriteButton onClick={() => handleFavorite(recipe)}>
-                  {recipe.isFavorite
-                    ? "Remove from Favorites"
-                    : "Add to Favorites"}
+                  {recipe.isFavorite ? "Remove Favorite" : "Add Favorite"}
                   <FavoriteIcon />
                 </FavoriteButton>
               </ButtonContainer>

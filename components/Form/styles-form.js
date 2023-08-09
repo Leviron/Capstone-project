@@ -44,4 +44,11 @@ export const FormButton = styled.button`
   cursor: pointer;
 `;
 
-export const AddButton = styled.button``;
+export const AddButton = styled.button`
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+`;
