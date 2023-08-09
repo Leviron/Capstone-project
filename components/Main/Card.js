@@ -75,25 +75,6 @@ export default function MainPage() {
     }
   };
 
-  const addFavorite = async (recipeId) => {
-    try {
-      const response = await fetch(`/api/user/favorites/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ recipeId }),
-      });
-
-      if (!response.ok) {
-        const responseData = await response.json();
-        console.error("Error adding to favorites:", responseData.message);
-      }
-    } catch (error) {
-      console.error("Error adding to favorites:", error);
-    }
-  };
-
   const handleFavorite = async (recipe) => {
     const updatedRecipe = {
       ...recipe,
@@ -170,16 +151,19 @@ export default function MainPage() {
               </MoreDetailsLink>
               <ButtonContainer>
                 <EditLink href={`/editpage/${recipe._id}`}>
-                  <EditIcon />
+                  <EditIcon /> Edit
                 </EditLink>
                 <DeleteButton onClick={() => handleDelete(recipe)}>
-                  <DeleteIcon />
+                  <DeleteIcon /> Delete
                 </DeleteButton>
                 <LikeButton onClick={() => handleLike(recipe)}>
                   {recipe.likes} <LikeIcon />
                 </LikeButton>
                 <FavoriteButton onClick={() => handleFavorite(recipe)}>
-                  {recipe.favorite ? "Unfavorite" : "Favorite"} <FavoriteIcon />
+                  {recipe.isFavorite
+                    ? "Remove from Favorites"
+                    : "Add to Favorites"}
+                  <FavoriteIcon />
                 </FavoriteButton>
               </ButtonContainer>
             </StyledCard>
