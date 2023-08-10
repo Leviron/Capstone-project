@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
-import { MdDelete } from "react-icons/md";
-import { MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { FcLike } from "react-icons/fc";
 import { AiFillLike } from "react-icons/ai";
 import Link from "next/link";
@@ -129,8 +128,6 @@ export const LikeIcon = styled(FcLike)`
   font-size: 1.5rem;
   cursor: pointer;
 
-  
-  }
   :active {
     transform: scale(0.85) rotateZ(1.7deg);
   }

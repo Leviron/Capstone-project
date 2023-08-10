@@ -28,7 +28,6 @@ export const NavButton = styled(Link)`
   margin-left: 30px;
   margin-right: 30px;
 
-  with: 90%;
   &:hover {
     background-color: #f5f5f5;
   }
