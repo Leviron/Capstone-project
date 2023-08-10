@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
-import { MdDelete } from "react-icons/md";
-import { MdEdit } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { FcLike } from "react-icons/fc";
+import { AiFillLike } from "react-icons/ai";
 import Link from "next/link";
 
 export const StyledCard = styled.div`
@@ -9,28 +10,17 @@ export const StyledCard = styled.div`
   width: 50vw;
   height: 60vh;
   background: rgba(217, 217, 217, 0.58);
-  border: 1px solid white;
+  border: 1px solid none;
   box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(6px);
   border-radius: 17px;
   text-align: center;
-  transition: all 0.5s;
-  user-select: none;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   margin: 1rem;
   margin-top: 3rem;
-
-  :hover {
-    transform: scale(1.05);
-    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-  }
-
-  :active {
-    transform: scale(0.95) rotateZ(1.7deg);
-  }
 
   p {
     font-weight: bold;
@@ -46,9 +36,9 @@ export const MoreDetailsLink = styled(Link)`
   width: 18vw;
   border-radius: 20px;
   border: 1px solid black;
-  background-color: white;
-  color: black;
-  font-size: 100%;
+  background-color: black;
+  color: white;
+  font-size: 80%;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
@@ -58,8 +48,8 @@ export const MoreDetailsLink = styled(Link)`
   }
 
   :hover {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
   }
 `;
 
@@ -117,24 +107,48 @@ export const Wrapper = styled.div`
 `;
 
 export const DeleteButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: none;
   background-color: transparent;
 `;
 
-export const EditLink = styled(Link)``;
+export const EditLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+`;
+
+export const LikeIcon = styled(FcLike)`
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  :active {
+    transform: scale(0.85) rotateZ(1.7deg);
+  }
+`;
 
 export const DeleteIcon = styled(MdDelete)`
   font-size: 1.5rem;
   color: black;
-
   cursor: pointer;
+  :active {
+    transform: scale(0.85) rotateZ(1.7deg);
+  }
 `;
 
 export const EditIcon = styled(MdEdit)`
   font-size: 1.5rem;
   color: black;
-
   cursor: pointer;
+  :active {
+    transform: scale(0.85) rotateZ(1.7deg);
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -142,4 +156,37 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+export const LikeButton = styled.button`
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+`;
+
+export const FavoriteButton = styled.button`
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+
+  :active {
+    transform: scale(0.95) rotateZ(1.7deg);
+    color: 16CA21;
+  }
+`;
+
+export const FavoriteIcon = styled(AiFillLike)`
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  :active {
+    transform: scale(0.85) rotateZ(1.7deg);
+    color: #4dca16;
+  }
 `;

@@ -8,11 +8,11 @@ export default async function handler(request, response) {
 
   if (request.method === "GET") {
     try {
-      const recipes = await Recipe.findById(id);
-      if (!recipes) {
+      const recipe = await Recipe.findById(id);
+      if (!recipe) {
         return response.status(404).json({ message: "Recipe not found" });
       }
-      response.status(200).json(recipes);
+      response.status(200).json(recipe);
     } catch (error) {
       console.error("Error finding recipe:", error);
       response.status(500).json({ message: "Internal server error" });
@@ -34,15 +34,17 @@ export default async function handler(request, response) {
 
   if (request.method === "PUT") {
     try {
-      const updatedRecipe = await Recipe.findByIdAndUpdate(id, {
-        $set: request.body,
-      });
+      const recipeToUpdate = await Recipe.findByIdAndUpdate(
+        id,
+        { $set: request.body },
+        { new: true, runValidators: true }
+      );
 
-      if (!updatedRecipe) {
+      if (!recipeToUpdate) {
         return response.status(404).json({ message: "Recipe not found" });
       }
 
-      response.status(200).json({ status: `Recipe ${id} updated!` });
+      response.status(200).json(recipeToUpdate);
     } catch (error) {
       console.error("Error updating recipe:", error);
       response.status(500).json({ message: "Internal server error" });

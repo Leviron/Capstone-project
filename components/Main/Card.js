@@ -12,14 +12,17 @@ import {
   MoreDetailsLink,
   CardList,
   ButtonContainer,
+  LikeIcon,
+  FavoriteIcon,
+  LikeButton,
+  FavoriteButton,
 } from "./Card.styled";
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 
 export default function MainPage() {
   const { data, isLoading, error } = useSWR("/api/recipes");
-  const router = useRouter();
+
   const [searchWord, setSearchWord] = useState("");
   const [filteredRecipes, setFilteredRecipes] = useState([]);
 
@@ -44,15 +47,61 @@ export default function MainPage() {
     }
   };
 
-  if (error) {
-    return (
-      <h1>
-        {error.message === "Recipe not found"
-          ? "Recipe not found"
-          : "failed to load "}
-      </h1>
-    );
-  }
+  const handleLike = async (recipe) => {
+    const updatedRecipe = {
+      ...recipe,
+      likes: recipe.likes + 1,
+    };
+
+    const response = await fetch(`/api/recipes/${recipe._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedRecipe),
+    });
+
+    if (response.ok) {
+      setFilteredRecipes((prevRecipes) =>
+        prevRecipes.map((prevRecipe) =>
+          prevRecipe._id === recipe._id
+            ? { ...prevRecipe, likes: recipe.likes + 1 }
+            : prevRecipe
+        )
+      );
+    } else {
+      const responseData = await response.json();
+      console.error("Error updating recipe:", responseData.message);
+    }
+  };
+
+  const handleFavorite = async (recipe) => {
+    const updatedRecipe = {
+      ...recipe,
+      isFavorite: !recipe.isFavorite,
+    };
+
+    const response = await fetch(`/api/recipes/${recipe._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedRecipe),
+    });
+
+    if (response.ok) {
+      setFilteredRecipes((prevRecipes) =>
+        prevRecipes.map((prevRecipe) =>
+          prevRecipe._id === recipe._id
+            ? { ...prevRecipe, isFavorite: updatedRecipe.isFavorite }
+            : prevRecipe
+        )
+      );
+    } else {
+      const responseData = await response.json();
+      console.error("Error updating favorite:", responseData.message);
+    }
+  };
 
   const searchHandler = (event) => {
     const searchWord = event?.target.value;
@@ -63,6 +112,16 @@ export default function MainPage() {
       setSearchWord("");
     }
   };
+
+  if (error) {
+    return (
+      <h1>
+        {error.message === "Recipe not found"
+          ? "Recipe not found"
+          : "failed to load "}
+      </h1>
+    );
+  }
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -92,11 +151,18 @@ export default function MainPage() {
               </MoreDetailsLink>
               <ButtonContainer>
                 <EditLink href={`/editpage/${recipe._id}`}>
-                  <EditIcon />
+                  <EditIcon /> Edit
                 </EditLink>
                 <DeleteButton onClick={() => handleDelete(recipe)}>
-                  <DeleteIcon />
+                  <DeleteIcon /> Delete
                 </DeleteButton>
+                <LikeButton onClick={() => handleLike(recipe)}>
+                  {recipe.likes} <LikeIcon />
+                </LikeButton>
+                <FavoriteButton onClick={() => handleFavorite(recipe)}>
+                  {recipe.isFavorite ? "Remove Favorite" : "Add Favorite"}
+                  <FavoriteIcon />
+                </FavoriteButton>
               </ButtonContainer>
             </StyledCard>
           </ContainerStyle>

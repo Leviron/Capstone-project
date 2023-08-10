@@ -39,7 +39,7 @@ export default function MoreDetails() {
               <ul>
                 {recipe.ingredients.map((ingredient, index) => (
                   <li key={index}>
-                    {ingredient.quantity} {ingredient.name} - {ingredient.type}
+                    {ingredient.name} {ingredient.quantity} {ingredient.type}
                   </li>
                 ))}
               </ul>
