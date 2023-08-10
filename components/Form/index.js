@@ -1,4 +1,4 @@
-import { FormContainer, FormButton, AddButto, Heading } from "./styles-form";
+import { FormContainer, FormButton, AddButton, Heading } from "./styles-form";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
