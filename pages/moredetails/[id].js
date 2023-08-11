@@ -31,6 +31,11 @@ export default function MoreDetails() {
         <Link href={`/editpage/${recipe._id}`}>
           <EditIcon />
         </Link>
+        <image>
+          {recipe?.image && (
+            <img width={"200px"} alt="Recipe Image" src={recipe?.image?.url} />
+          )}
+        </image>
         <h1>{recipe.name}</h1>
         {recipe.ingredients && (
           <div>

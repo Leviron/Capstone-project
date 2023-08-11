@@ -2,6 +2,8 @@ import { FormContainer, FormButton, AddButton, Heading } from "./styles-form";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import ImageUploadReloaded from "../ImageUpload/imageUploadReloaded";
+
 export default function CreateRecipe() {
   const router = useRouter();
   const [ingredientFields, setIngredientFields] = useState([
@@ -9,6 +11,8 @@ export default function CreateRecipe() {
   ]);
   const [name, setName] = useState("");
   const [steps, setSteps] = useState([""]);
+
+  const [recipeImageUrl, setRecipeImageUrl] = useState("");
 
   const handleAddIngredient = () => {
     setIngredientFields([
@@ -56,7 +60,12 @@ export default function CreateRecipe() {
         type: field.unit,
       })),
       steps: steps,
+      image: {
+        url: recipeImageUrl,
+      },
     };
+
+    console.log(recipe);
 
     try {
       const response = await fetch(`/api/recipes`, {
@@ -93,7 +102,6 @@ export default function CreateRecipe() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-
         {ingredientFields.map((field, index) => (
           <div key={index}>
             <input
@@ -135,11 +143,9 @@ export default function CreateRecipe() {
             )}
           </div>
         ))}
-
         <AddButton type="button" onClick={handleAddIngredient}>
           Add Ingredient
         </AddButton>
-
         {steps.map((step, index) => (
           <div key={index}>
             <textarea
@@ -155,10 +161,10 @@ export default function CreateRecipe() {
             )}
           </div>
         ))}
-
         <AddButton type="button" onClick={handleAddStep}>
           Add Step
         </AddButton>
+        <ImageUploadReloaded setRecipeImageUrl={setRecipeImageUrl} />
 
         <FormButton>Submit</FormButton>
       </FormContainer>

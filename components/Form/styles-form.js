@@ -11,8 +11,9 @@ export const Heading = styled.h1`
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
+  margin-bottom: 10rem;
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;

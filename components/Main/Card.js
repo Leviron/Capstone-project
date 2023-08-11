@@ -17,6 +17,7 @@ import {
   LikeButton,
   FavoriteButton,
 } from "./Card.styled";
+
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
 
@@ -137,7 +138,7 @@ export default function MainPage() {
         <SearchIcon />
         <input
           type="search"
-          placeholder="Type to search.."
+          placeholder="Search for recipe..."
           onChange={searchHandler}
         />
       </SearchContainer>
@@ -149,6 +150,11 @@ export default function MainPage() {
               <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
                 More details
               </MoreDetailsLink>
+              <img
+                width={"100px"}
+                alt="Recipe Image"
+                src={recipe?.image?.url}
+              />
               <ButtonContainer>
                 <EditLink href={`/editpage/${recipe._id}`}>
                   <EditIcon /> Edit
