@@ -16,7 +16,9 @@ import {
   FavoriteIcon,
   LikeButton,
   FavoriteButton,
+  StylePicture,
 } from "./Card.styled";
+
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
 
@@ -34,10 +36,18 @@ export default function MainPage() {
   }, [data, searchWord, isLoading]);
 
   const handleDelete = async (recipe) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this recipe?"
+    );
+    if (!confirmDelete) {
+      return;
+    }
+
     const response = await fetch(`/api/recipes/${recipe._id}`, {
       method: "DELETE",
     });
     if (response.ok) {
+      window.alert("Recipe deleted successfully.");
       setFilteredRecipes((prevRecipes) =>
         prevRecipes.filter((refresh) => refresh._id !== recipe._id)
       );
@@ -137,7 +147,7 @@ export default function MainPage() {
         <SearchIcon />
         <input
           type="search"
-          placeholder="Type to search.."
+          placeholder="Search for recipe..."
           onChange={searchHandler}
         />
       </SearchContainer>
@@ -145,10 +155,17 @@ export default function MainPage() {
         {filteredRecipes.map((recipe) => (
           <ContainerStyle key={recipe._id}>
             <StyledCard>
+              <StylePicture
+                width={"100px"}
+                alt="Recipe Image"
+                src={recipe?.image?.url}
+              />
+
               <p>{recipe.name}</p>
               <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
                 More details
               </MoreDetailsLink>
+
               <ButtonContainer>
                 <EditLink href={`/editpage/${recipe._id}`}>
                   <EditIcon /> Edit

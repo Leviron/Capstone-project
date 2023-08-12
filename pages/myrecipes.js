@@ -5,8 +5,10 @@ import {
   StyledCard,
   MoreDetailsLink,
   CardList,
+  StylePicture,
 } from "../components/Main/Card.styled";
-
+import styled from "styled-components";
+import { GoBackLink, GoBackButton } from "./moredetails/[id]";
 import useSWR from "swr";
 
 export default function MyRecipesPage() {
@@ -41,6 +43,7 @@ export default function MyRecipesPage() {
 
   return (
     <Wrapper>
+      <StyledH1>My Favorites</StyledH1>
       <CardList>
         {filteredRecipes.map((recipe) => (
           <ContainerStyle key={recipe._id}>
@@ -49,10 +52,22 @@ export default function MyRecipesPage() {
               <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
                 More details
               </MoreDetailsLink>
+              <StylePicture src={recipe.image.url} alt={recipe.name} />
             </StyledCard>
           </ContainerStyle>
         ))}
       </CardList>
+      <GoBackLink href="/">
+        {" "}
+        <GoBackButton>Go Back</GoBackButton>
+      </GoBackLink>
     </Wrapper>
   );
 }
+
+const StyledH1 = styled.h1`
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem;
+`;

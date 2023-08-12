@@ -2,18 +2,22 @@ import { FormContainer, FormButton, AddButton, Heading } from "./styles-form";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import ImageUploadReloaded from "../ImageUpload/imageUploadReloaded";
+
 export default function CreateRecipe() {
   const router = useRouter();
   const [ingredientFields, setIngredientFields] = useState([
-    { name: "", quantity: "", unit: "gram" },
+    { name: "", quantity: "", unit: "" },
   ]);
   const [name, setName] = useState("");
   const [steps, setSteps] = useState([""]);
 
+  const [recipeImageUrl, setRecipeImageUrl] = useState("");
+
   const handleAddIngredient = () => {
     setIngredientFields([
       ...ingredientFields,
-      { name: "", quantity: "", unit: "gram" },
+      { name: "", quantity: "", unit: "" },
     ]);
   };
 
@@ -56,6 +60,9 @@ export default function CreateRecipe() {
         type: field.unit,
       })),
       steps: steps,
+      image: {
+        url: recipeImageUrl,
+      },
     };
 
     try {
@@ -73,7 +80,7 @@ export default function CreateRecipe() {
       }
 
       setName("");
-      setIngredientFields([{ name: "", quantity: "", unit: "gram" }]);
+      setIngredientFields([{ name: "", quantity: "", unit: "" }]);
       setSteps([""]);
       router.push("/");
     } catch (error) {
@@ -93,7 +100,6 @@ export default function CreateRecipe() {
           onChange={(e) => setName(e.target.value)}
           required
         />
-
         {ingredientFields.map((field, index) => (
           <div key={index}>
             <input
@@ -121,9 +127,15 @@ export default function CreateRecipe() {
                 handleIngredientChange(index, "unit", e.target.value)
               }
             >
+              <option value="empty"></option>
               <option value="gram">Gram</option>
               <option value="pound">Pound</option>
+              <option value="pieces">Piece</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="liter">Liter</option>
+              <option value="ounce">Ounce</option>
               <option value="cup">Cup</option>
+              <option value="tablespoon">Tablespoon</option>
             </select>
             {index > 0 && (
               <button
@@ -135,11 +147,9 @@ export default function CreateRecipe() {
             )}
           </div>
         ))}
-
         <AddButton type="button" onClick={handleAddIngredient}>
           Add Ingredient
         </AddButton>
-
         {steps.map((step, index) => (
           <div key={index}>
             <textarea
@@ -155,10 +165,10 @@ export default function CreateRecipe() {
             )}
           </div>
         ))}
-
         <AddButton type="button" onClick={handleAddStep}>
           Add Step
         </AddButton>
+        <ImageUploadReloaded setRecipeImageUrl={setRecipeImageUrl} />
 
         <FormButton>Submit</FormButton>
       </FormContainer>

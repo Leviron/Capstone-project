@@ -6,12 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "img.sndimg.com",
-      },
-    ],
+    domains: ["res.cloudinary.com"],
   },
 };
 
