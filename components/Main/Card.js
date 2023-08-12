@@ -16,6 +16,7 @@ import {
   FavoriteIcon,
   LikeButton,
   FavoriteButton,
+  StylePicture,
 } from "./Card.styled";
 
 import { getFilteredRecipes } from "../Search/search";
@@ -146,15 +147,17 @@ export default function MainPage() {
         {filteredRecipes.map((recipe) => (
           <ContainerStyle key={recipe._id}>
             <StyledCard>
-              <p>{recipe.name}</p>
-              <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
-                More details
-              </MoreDetailsLink>
-              <img
+              <StylePicture
                 width={"100px"}
                 alt="Recipe Image"
                 src={recipe?.image?.url}
               />
+
+              <p>{recipe.name}</p>
+              <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
+                More details
+              </MoreDetailsLink>
+
               <ButtonContainer>
                 <EditLink href={`/editpage/${recipe._id}`}>
                   <EditIcon /> Edit

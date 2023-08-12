@@ -5,6 +5,15 @@ import { FcLike } from "react-icons/fc";
 import { AiFillLike } from "react-icons/ai";
 import Link from "next/link";
 
+export const StylePicture = styled.img`
+  width: 100%;
+  height: 50%;
+
+  border-radius: 17px;
+  object-fit: cover;
+  object-position: center;
+`;
+
 export const StyledCard = styled.div`
   box-sizing: border-box;
   width: 50vw;
