@@ -7,7 +7,7 @@ import ImageUploadReloaded from "../ImageUpload/imageUploadReloaded";
 export default function CreateRecipe() {
   const router = useRouter();
   const [ingredientFields, setIngredientFields] = useState([
-    { name: "", quantity: "", unit: "gram" },
+    { name: "", quantity: "", unit: "" },
   ]);
   const [name, setName] = useState("");
   const [steps, setSteps] = useState([""]);
@@ -17,7 +17,7 @@ export default function CreateRecipe() {
   const handleAddIngredient = () => {
     setIngredientFields([
       ...ingredientFields,
-      { name: "", quantity: "", unit: "gram" },
+      { name: "", quantity: "", unit: "" },
     ]);
   };
 
@@ -65,8 +65,6 @@ export default function CreateRecipe() {
       },
     };
 
-    console.log(recipe);
-
     try {
       const response = await fetch(`/api/recipes`, {
         method: "POST",
@@ -82,7 +80,7 @@ export default function CreateRecipe() {
       }
 
       setName("");
-      setIngredientFields([{ name: "", quantity: "", unit: "gram" }]);
+      setIngredientFields([{ name: "", quantity: "", unit: "" }]);
       setSteps([""]);
       router.push("/");
     } catch (error) {
@@ -129,9 +127,15 @@ export default function CreateRecipe() {
                 handleIngredientChange(index, "unit", e.target.value)
               }
             >
+              <option value="empty"></option>
               <option value="gram">Gram</option>
               <option value="pound">Pound</option>
+              <option value="pieces">Piece</option>
+              <option value="kilogram">Kilogram</option>
+              <option value="liter">Liter</option>
+              <option value="ounce">Ounce</option>
               <option value="cup">Cup</option>
+              <option value="tablespoon">Tablespoon</option>
             </select>
             {index > 0 && (
               <button

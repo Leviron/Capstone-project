@@ -24,13 +24,13 @@ export default function MoreDetails() {
   return (
     <>
       <Header>
+        <StyledTitle>{recipe.name}</StyledTitle>
         <Link href={`/editpage/${recipe._id}`}>
           {" "}
           <GoToEdit />
         </Link>
       </Header>
       <MoreDetailsLayout>
-        <StyledTitle>{recipe.name}</StyledTitle>
         <image>
           {recipe?.image && (
             <img width={"100%"} alt="Recipe Image" src={recipe?.image?.url} />
@@ -79,13 +79,14 @@ export default function MoreDetails() {
   );
 }
 
-const GoBackLink = styled(Link)`
+export const GoBackLink = styled(Link)`
   width: 100%;
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+
+  border: none;
 `;
 
 const StepsContainer = styled.div`
@@ -133,19 +134,20 @@ const StyledTitle = styled.h1`
 
 const MoreDetailsLayout = styled.div`
 margin-bottom: 2rem;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // flex-direction: column;
-  // margin-left: 10%;
-  // margin-right: 10%;
-  // margin-top: 2rem;
-  margin-bottom: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 6rem;
+  margin-top: 2rem;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 20px;
   }
 
   // border: 1px solid black;
@@ -171,15 +173,13 @@ const Header = styled.div`
   margin-1vh;
 `;
 
-const GoBackButton = styled.button`
+export const GoBackButton = styled.button`
   border-radius: 10px;
-  border: 1px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
   background-color: transparent;
   font-size: 100%;
   font-weight: bold;
-
-  }
+  cursor: pointer;
 `;
 
 const Ingredients = styled.ul`

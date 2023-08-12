@@ -36,10 +36,18 @@ export default function MainPage() {
   }, [data, searchWord, isLoading]);
 
   const handleDelete = async (recipe) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this recipe?"
+    );
+    if (!confirmDelete) {
+      return;
+    }
+
     const response = await fetch(`/api/recipes/${recipe._id}`, {
       method: "DELETE",
     });
     if (response.ok) {
+      window.alert("Recipe deleted successfully.");
       setFilteredRecipes((prevRecipes) =>
         prevRecipes.filter((refresh) => refresh._id !== recipe._id)
       );
