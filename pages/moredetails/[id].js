@@ -4,6 +4,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { EditIcon } from "../../components/Main/Card.styled";
 import { MdEdit } from "react-icons/md";
+import { IsLoading } from "../../components/Main/Card";
 
 export default function MoreDetails() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function MoreDetails() {
   }
 
   if (!recipe) {
-    return <h1>Loading...</h1>;
+    return <IsLoading />;
   }
 
   return (

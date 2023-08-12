@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import EditRecipe from "../../components/Form/Edit";
+import { IsLoading } from "../../components/Main/Card";
 
 export default function EditRecipePage() {
   const router = useRouter();
@@ -25,7 +26,7 @@ export default function EditRecipePage() {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <IsLoading />;
   }
 
   return (

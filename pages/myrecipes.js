@@ -7,6 +7,7 @@ import {
   CardList,
   StylePicture,
 } from "../components/Main/Card.styled";
+import { IsLoading } from "../components/Main/Card";
 import styled from "styled-components";
 import { GoBackLink, GoBackButton } from "./moredetails/[id]";
 import useSWR from "swr";
@@ -34,7 +35,7 @@ export default function MyRecipesPage() {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <IsLoading />;
   }
 
   if (!allRecipes) {

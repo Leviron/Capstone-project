@@ -18,6 +18,7 @@ import {
   FavoriteButton,
   StylePicture,
 } from "./Card.styled";
+import styled, { StyledComponent } from "styled-components";
 
 import { getFilteredRecipes } from "../Search/search";
 import useSWR from "swr";
@@ -134,7 +135,7 @@ export default function MainPage() {
   }
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <IsLoading />;
   }
 
   if (!data) {
@@ -188,3 +189,36 @@ export default function MainPage() {
     </Wrapper>
   );
 }
+
+export const IsLoading = styled.div`
+  .loader {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: transparent;
+    border-radius: 50%;
+  }
+
+  .loader {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: transparent;
+    width: 36px;
+    height: 36px;
+  }
+
+  .loader {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: transparent;
+    width: 36px;
+    height: 36px;
+    animation: spin89345 1s linear infinite;
+  }
+
+  @keyframes spin89345 {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
