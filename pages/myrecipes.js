@@ -51,7 +51,7 @@ export default function MyRecipesPage() {
             <StyledCard>
               <p>{recipe.name}</p>
               <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
-                More details
+                Show Recipe
               </MoreDetailsLink>
               <StylePicture src={recipe.image.url} alt={recipe.name} />
             </StyledCard>
