@@ -164,7 +164,7 @@ export default function MainPage() {
 
               <p>{recipe.name}</p>
               <MoreDetailsLink href={`/moredetails/${recipe._id}`}>
-                More details
+                Show Recipe
               </MoreDetailsLink>
 
               <ButtonContainer>
